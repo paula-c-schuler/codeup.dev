@@ -1,0 +1,78 @@
+body{
+	/*padding-top: 85px;*/
+	background-color: #E3F3F3;
+}
+
+
+/* BACKGROUND IMAGE A MYSTERY SO FAR
+img{
+	width: 1185;
+	height: auto;	
+	} GOT HACK BELOW FROM CSS-TRICKS.COM */
+
+img {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}   
+/*Don't know why above img code won't work*/
+
+
+body{
+	background: url(/../img/light_grey.png);
+}
+h1{
+	/*font-family: Papyrus; */
+	font-size: 30px;
+}
+.navbar{
+	background-color: #602E72;
+	color: white;
+}
+.jumbotron{
+	background-color: #E6D9EB;
+	margin-bottom: 2px;
+	text-align: center;
+	/*max-height: 250px; */
+}
+.row-banner{
+	height: auto;
+	width: auto;
+	border-top: 4px solid #602E72;
+	/*border-bottom: 2px solid #994BB6;*/
+	margin-top: 5px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+#contact-info{
+	font-size: 20px;
+	font-weight: bold;
+}
+.box{
+	border-top: 7px solid #AF92BA;
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+

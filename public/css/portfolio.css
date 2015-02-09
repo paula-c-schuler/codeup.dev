@@ -1,0 +1,28 @@
+/*as instructed, 
+this first code is written 
+as automatically needed*/
+body{
+	background-color: #E3F3F3;
+}
+.jumbotron{
+	background: url(/../img/light_grey.png);
+	text-align: center;
+}
+.navbar{
+	background-color: #602E72;
+	color: white;
+}
+.btn-lg{
+	background-color: #AF92BA;
+}
+.navbar-fixed-top{
+	background-color: #602E72;
+	color: white;
+	text-align: center;
+}
+
+
+
+
+
+

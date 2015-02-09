@@ -1,0 +1,47 @@
+h1{
+	color: purple;
+}
+.container{
+	border: 1px solid black;
+	height: auto;
+	width: 500px;
+}
+
+.box-colored{
+	height: 72px;
+	width: 72px;
+	border: 1px solid black;
+	float: left;
+}
+
+.content{
+	height: 50px;
+	width: 50px;
+	border: 1px solid black;
+	font-weight: bold;
+}
+#red{
+	background-color: red;
+}
+
+#orange{
+	background-color: orange;
+}
+
+#yellow{
+	background-color: yellow;
+}
+
+#green{
+	background-color: green;
+	/*only his green box had clear:both; */
+}
+
+#blue{
+	background-color: blue;
+}
+#purple{
+	background-color: purple;
+}
+
+

@@ -1,0 +1,36 @@
+body{
+	padding-top: 85px;
+}
+.container{
+	border: 2px solid black;
+	height: auto;
+}
+#row-one{
+	border: 4px solid purple;
+
+}
+#top-left-column{
+	background-color: #AF92BA;
+}
+#top-right-column{
+	background-color: #DAF5F5;
+}
+#row-two{
+	border-color: 4px solid green;
+}
+#education{
+	background-color: #E6D9EB;
+}
+#skills{
+	background-color: #F6C87F;
+}
+#row-three{
+	border-color: 4px solid red;
+}
+#journalism{
+	background-color: #ADE4BC;
+}
+#real-estate{
+	background-color: #F999E6;
+}
+
