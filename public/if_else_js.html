@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>if_else_js.html</title>
+</head>
+	<body>
+		<script type="text/javascript">
+			var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+			var color = colors[Math.floor(Math.random()*colors.length)];
+			var favorite = "red";
+			if (color == "red"){
+				console.log(color + " - Red is the color of a fire engine.")
+			} else if (color == "orange"){
+				console.log(color + " - Orange is a color of pumpkins.")
+			} else if (color == "yellow"){
+				console.log(color + " - Yellow is the color of the sun.")
+			} else if (color == "green"){
+				console.log(color + " - Green is the color of grass.")
+			} else if (color == "blue"){
+				console.log(color + " - Blue is the color of the sky.")
+			} else {
+				console.log(color + " - This is not my favorite, no.")
+			}
+			var message = (color == favorite) ? "That's my fav color!" : "I prefer red."; console.log(message);
+		</script>
+	</body>
+</html>
+
+
