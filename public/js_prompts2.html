@@ -1,0 +1,47 @@
+<html>
+<head>
+	<title>js_prompts2</title>
+</head>
+<body>
+<script type="text/javascript">
+//THIS ONE DOEES NOT WORK YET
+	var random = Math.floor((Math.random()*25)+1);
+	console.log(random);
+	var guess;
+	while (guess != random) {
+		guess = prompt("Guess a number between 1 and 25");
+		if (guess < random) {
+			alert("You are too low.");
+		} 
+		else if (guess > random) {
+			alert("You are too high.");
+		} 
+		else (guess == random) 
+		{
+			alert("You win! Yay!");
+		}
+		}
+	// }
+	// again = confirm("Do you want to play again?");
+	// }	
+
+
+	// while (guess != null); 
+	// 	if (guess < random) {
+	// 		var guessAgain = confirm("Your guess is too low. Do you want to play again?");
+	// 	} else if (guess > random) {
+	// 		var guessAgain = confirm("Your guess is high, dude. Do you want to play again?");
+	// 	}
+
+
+
+
+
+	// 	// 		(guessAgain = "yes");
+	// 	// 		guess = prompt("Guess a number between 1 and 100");
+	// 	// 		}	
+	// 	// }
+	
+</script>
+</body>
+</html>
