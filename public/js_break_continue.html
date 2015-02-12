@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>js_break_continue</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+//EXERCISE ONE
+//if number is not odd, keep getting random number until it is odd. 
+	// var random = Math.floor((Math.random()*50)+1);
+	// console.log("Random stop is " + random);
+
+	// 	for (var i = 1; i <= 100; i++) {
+	// 		console.log("Loop counter is " + i);
+	// 		if (random == i) {
+	// 			console.log("Reached stop: break!");
+	// 			break;
+	// 		}
+	// 	}
+
+//EXERCISE TWO
+//continue to loop if random is even
+		// while(true){
+		// 	var random = Math.floor((Math.random() * 100) + 1)
+		// 	if(random % 2 != 0) {
+		// 		break;
+		// 	}
+		// }
+		// console.log("Random stopping point is: " + random);
+
+//NOTE
+//can also use a for loop to do the same thing, continue to loop if random is even
+    	// for (var i = 0; i == 0;) {
+    	// 	var random = Math.floor((Math.random() * 100) + 1);
+    	// 	console.log("ran");
+    	// 	if (random % 2 != 0) {
+    	// 		break;
+    	// 	}
+    	// }
+
+//print out all odd numbers except the random odd number generated
+		var random = Math.floor((Math.random() * 20) + 1);
+		for (var i = 0; i % 2 = 0; i++) {
+			if (random == i) {
+    			console.log("Yikes! Skipping this number: " + random);
+    			continue;
+    		} else if (i % 2 != 0) { 
+    			console.log("Here is an odd number: " + random);
+	    	}
+    	}
+	</script>
+
+
+
+</body>
+</html>
