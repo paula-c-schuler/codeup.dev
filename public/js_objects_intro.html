@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>js_objects_intro</title>
+</head>
+<body>
+<script type="text/javascript">
+//THIS EXERCISE WORKS
+	var person = {};
+	person.firstName = "Paula";
+	person.lastName = "Schuler";
+	person.sayHello = function ()
+	{
+		alert("Hey, " + this.firstName + " " + this.lastName);
+	};
+	person.sayHello();
+</script>
+</body>
+</html>

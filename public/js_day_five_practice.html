@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>js_day_five_practice</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//INTRO TO GLOBAL AND LOCAL SCOPES
+// declare a global variable
+var globalVar = "Look, I'm Global!";
+
+// call the say hello function
+sayHello();
+
+// define the sayHello function
+function sayHello() {
+    // globalVar is accessible here since the sayHello function scope is a sub-scope of the global scope
+    var globalVar = "Look I am local";
+    // but this makes it a local inside this function only
+    alert(globalVar);
+}
+alert(globalVar); 
+//will alert the global variable identified above the function 
+
+
+//SELF-INVOKING FUNCTION
+//SET UP
+//      (   (){}) ()
+//      (function ()
+
+// (function(){
+
+// })();
+
+console.log(____NEXT EXERCISE_________)
+
+var shapes = ['square', 'rectangle', 'circle', 'triangle'];
+console.log('There are ' + shapes.length + ' shapes in the array');
+console.log('The first shape is: ' + shapes[0]);
+console.log('The second shape is: ' + shapes[1]);
+console.log('The third shape is: ' + shapes[2]);
+console.log('The fourth shape is: ' + shapes[3]);
+console.log('The fifth shape is: ' + shapes[4]);
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
