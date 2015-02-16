@@ -1,0 +1,86 @@
+<html>
+<head>
+	<title>js_json_objects</title>
+	<script type="text/javascript">
+	// todo:
+// Create an array of objects that represent books.
+// Each book should have a title and an author.
+// The book author should be an object with a firstName and lastName.
+// Be creative and add at least 5 books to the array
+var books = [
+    {
+       	"Title": "Harry Potter",
+       	"book number": 01,
+        "author": {
+            "firstName": "JK",
+            "lastName": "Rowling"
+        }
+    },
+    //A book is an object, has properties. an author, too. Making author an object is a good way to do this. There are many ways. Multiple authors of a book would be well-organized in an array. 
+    {
+        "Title": "Charlottes Webb",
+        "bookNumber": 02,
+        "author": {
+            "firstName": "EB",
+            "lastName": "White"
+        }
+    },
+    {
+        "Title": "Robot",
+        "bookNumber": 03,
+        "author": {
+            "firstName": "Isaac",
+            "lastName": "Asimov"
+        }
+    },
+    {
+        "Title": "Tom Sawyer",
+        "bookNumber": 04,
+        "author": {
+            "firstName": "Mark",
+            "lastName": "Twain"
+        }
+    },
+    {
+        "Title": "Huckleberry Finn",
+        "bookNumber": 05,
+        "author": {
+            "firstName": "Mark",
+            "lastName": "Twain"
+        }
+    }
+];
+
+// log out the books array
+// console.log(books);
+
+// todo:
+// Loop through the array of books using .forEach and print out the specified information about each one.
+// start loop here
+//THIS FOR LOOP WORKS NICELY
+// for (i = 0; i < books.length; i++)  {
+// 	console.log(books[i]);
+// 	console.log("Book number " + books[i].bookNumber);
+// 	console.log("Title: " + books[i].Title);
+// 	console.log("Author: " + books[i].author.firstName + " " + books[i].author.lastName);
+// 	console.log("_____________");
+// };
+//THIS DOES NOT WORK: ERROR SAYS INVALID LEFT HAND SIDE IN ASSIGNMENT
+books.forEach(function(element, index, array){
+    console.log("Title: " + element.Title);
+    	element.author.forEach(function(element) {
+    		console.log("Author: " = element.author.firstName + " " + element.author.lastName)
+   		 });
+    console.log("-----------------");
+   };
+   //TIPS:
+   //1. AFTER SETTING UP .FOREACH, console.log(element) to see if it prints out.
+   //2. Q: WHAT IF A FIELD WAS BLANK?  MAKE THE LOOP FOR THE ELEMENT2 AN IF/ELSE.
+
+// end loop here
+	</script>
+</head>
+<body>
+
+</body>
+</html>
