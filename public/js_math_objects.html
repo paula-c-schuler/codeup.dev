@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>js_math_objects</title>
+	<script type="text/javascript">
+var circle = {
+    radius: 3,
+    getArea: function() {
+        return Math.PI * Math.pow(this.radius, 2);
+    },
+    logInfo: function (round) {
+        // var area = this.getArea();
+        if (round) {
+        	var area = Math.round(this.getArea());
+        } else {
+        	var area = this.getArea();
+        }
+	    console.log('Area of a circle with radius: ' + this.radius + ', is: ' + area);
+    }
+};
+circle.logInfo(false);
+circle.logInfo(true);
+//THE ABOVE TWO LINES OF CODE ARE GIVING THE USER OPTIONS TO SAY TRUE OR FALSE TO SOMETHING SO THAT THE RESULT WILL BE PASSED INTO THE ROUNDING FUNCTION. 
+console.log("-----------------------");
+
+var trapezoid = {
+	length: 11,
+	width: 15.5,
+	height: 17,
+	getArea: function () {
+		return (this.length + this.width) * this.height/2;
+	},
+	logInfo: function (round) {
+		if (round){
+			var roundedArea = Math.round(this.getArea());
+		} else {
+			var roundedArea = this.getArea();
+		} 
+		return roundedArea;
+	}
+};
+trapezoid.logInfo(true);
+trapezoid.logInfo(false);
+//THE ABOVE TWO LINES OF CODE ARE GIVING THE USER OPTIONS TO SAY TRUE OR FALSE TO SOMETHING SO THAT THE RESULT WILL BE PASSED INTO THE ROUNDING FUNCTION. 
+console.log(trapezoid.logInfo(true));
+console.log("-----------------------");
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
