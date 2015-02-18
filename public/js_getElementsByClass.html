@@ -1,0 +1,106 @@
+<html>
+<head>
+    <title>js_DOM_getElements_NOTES</title>
+</head>
+<body>
+<h1>List One</h1>
+<ul>
+    <li class="odd list-one-item">List 1, Item 1</li>
+    <li class="even list-one-item">List 1, Item 2</li>
+</ul>
+<h1>List Two</h1>
+<ul>
+    <li class="odd list-two-item">List 2, Item 1</li>
+    <li class="even list-two-item">List 2, Item 2</li>
+</ul>
+
+<script>
+    // get all elements with class 'even'
+    var evenElements = document.getElementsByClassName('even');
+
+    // print the first element
+    console.log(evenElements[0]);
+
+    // prints li.even.list-one-item
+
+    // print all elements
+    for (var i = 0; i < evenElements.length; i++) {
+        console.log(evenElements[i]);
+    }
+
+    // prints
+    // li.even.list-one-item
+    // li.even.list-two-item
+
+    var listItems = document.getElementsByTagName('li');
+
+    // print the first list item
+    console.log(listItems[0]);
+
+    // prints li.odd.list-one-item
+
+    // print all the list items
+    for (var i = 0; i < listItems.length; i++) {
+        console.log(listItems[i]);
+    }
+
+    //DEVELOPING APP FOR DOCTOR OFFICE
+    //WE HAVE LIST ITEMS, ALL THE DOCTORS AND NEED TO PUT SOMETHING IN FRONT AND BEHIND LIST ITEMS.
+    //We would run a loop, iterate through it and change the text inside the elements as it iterated. 
+    //Can do this with any element. 
+    //Can also create an array of the elements wanting to change, then command a change on the elements in the array and replace them into the document. 
+    //
+
+    // prints
+    // li.odd.list-one-item
+    // li.even.list-one-item
+    // li.odd.list-two-item
+    // li.even.list-two-item
+</script>
+As you can see, elements returned by document.getElementsByClassName() or document.getElementsByTagName() must be accessed by as an array.
+
+Direct Access to Form Inputs
+
+Some elements, like form inputs, can be accessed directly by name through special properties on the document object. Let's see an example:
+
+<form name="login" method="POST" action="/process-form.php">
+  <!--   FORM NAME HERE IS HOW FORM IS IDENTIFIED IF THERE IS MORE THAN ONE FORM ELEMENT ON A PAGE -->
+    <p>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text">
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+<script>
+    // get the "username" input
+    var usernameInput = document.forms['login']['username'];
+//document.forms is going to list an array of all the forms on the page. 
+//So, we have to identify the form by name and then the object inside the named form; hence, ['login'] and ['username'].
+//How do we access the data in the object?
+//document.forms['login']['username'].value
+//document.forms['login']['username'].placeholder = "Input user name here"
+//Above is a way to do something with the page, to tell the user to put her name in that username field. 
+
+//CAN USE DOT NOTATION ALSO LIKE THIS
+//document.forms.login.username   BUT TEST IT
+
+//CAN CUT DOWN TYPING BY ASSIGNING LIKE THIS
+//var username = document.forms.login.username
+
+//username.value
+//username.placeholder = blah blah to talk to the user
+//NTS: nice shorthand
+
+
+
+    // log the value of the "username" input
+    console.log(usernameInput.value);
+</script>
+</body>
+</html>

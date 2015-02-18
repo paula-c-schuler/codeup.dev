@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>js</title>
+</head>
+<body>
+<h1>List One</h1>
+<ul>
+    <li class="odd list-one-item">List 1, Item 1</li>
+    <li class="even list-one-item">List 1, Item 2</li>
+    <!-- There are two class names each. They share the hyphenated class name "list-one-item", differentiated by "odd" and "even". -->
+</ul>
+<h1>List Two</h1>
+<ul>
+    <li class="odd list-two-item">List 2, Item 1</li>
+    <li class="even list-two-item">List 2, Item 2</li>
+</ul>
+
+<script>
+    // get all elements with class 'even'
+    var evenElements = document.getElementsByClassName('even');
+    //Returns data to evenElements as an array, even though brackets were not used when identifying evenElements. 
+
+    // print the first element
+    console.log(evenElements[0]);
+
+    // prints li.even.list-one-item
+
+    // print all elements
+    for (var i = 0; i < evenElements.length; i++) {
+        console.log(evenElements[i]);
+    }
+
+    // prints
+    // li.even.list-one-item
+    // li.even.list-two-item
+
+    var listItems = document.getElementsByTagName('li');
+
+    // print the first list item
+    console.log(listItems[0]);
+
+    // prints li.odd.list-one-item
+
+    // print all the list items
+    for (var i = 0; i < listItems.length; i++) {
+        console.log(listItems[i]);
+    }
+
+    // prints
+    // li.odd.list-one-item
+    // li.even.list-one-item
+    // li.odd.list-two-item
+    // li.even.list-two-item
+</script>
+As you can see, elements returned by document.getElementsByClassName() or document.getElementsByTagName() must be accessed by as an array.
+
+Direct Access to Form Inputs
+
+Some elements, like form inputs, can be accessed directly by name through special properties on the document object. Let's see an example:
+
+<form name="login" method="POST" action="/process-form.php">
+    <p>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text">
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+<script>
+    // get the "username" input
+    var usernameInput = document.forms['login']['username'];
+
+    // log the value of the "username" input
+    console.log(usernameInput.value);
+</script>
+</body>
+</html>

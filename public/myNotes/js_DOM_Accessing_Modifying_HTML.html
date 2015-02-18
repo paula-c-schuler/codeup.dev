@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>js_DOM_Accessing_Modifying_HTML_NOTES</title>
+</head>
+<body>
+    Accessing or Modifying Inner HTML
+
+<!-- Inner HTML is the content within the open and close tag of an HTML element. This can be retrieved or updated via the innerHTML property on the element you are working with. Let's see an example: -->
+    <h1 id="main-heading">Hello World!</h1>
+    <div id="main-section">
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </div>
+    <script>
+        // get the main heading h1 by id
+        var mainHeading = document.getElementById("main-heading");
+
+        console.log(mainHeading.innerHTML); // prints Hello World!
+
+        // assign a new value to the inner HTML of the main heading
+        mainHeading.innerHTML = "Hello Codeup!";
+//NTS: Can also add stle = "<em>I heard you like italics!</em>"
+//NTS: Can set timeouts to load new text onto the display screen for the user after a certain time period. 
+
+        console.log(mainHeading.innerHTML); // prints Hello Codeup!
+
+        // get the main section div by id
+        var mainSection = document.getElementById('main-section');
+
+        console.log(mainSection.innerHTML);
+        //prints
+        // <p>Paragraph 1</p>
+        // <p>Paragraph 2</p>
+//WE DID SOMETHING DIFFERENT -- changed text when text clicked
+// var mainHeading = document.getElementById('main-heading');
+// function increaseFont (){
+//     var content = mainHeading.innerText
+//     mainHeading.innerHTML = "do something to change the size of the font or etc" DID GOODBYE CRUEL WORLD FOR THE EXAMPLE
+// }
+// mainHeading.addEventListener('click', increaseFont, false);
+________________________________________________
+Accessing or Modifying Attributes
+
+// In addition to retrieving or updating an element's inner HTML, the element's attributes can also be accessed and updated. This is accomplished through the attributes property on an HTML element, which gives access to attributes and their values. Let's see an example:
+
+<a href="http://www.yahoo.com" id="search-link">Web Search</a>
+<script>
+    // get the search link anchor by id
+    var searchLink = document.getElementById('search-link');
+
+    console.log(searchLink.attributes['href'].value); // prints http://www.yahoo.com
+
+
+    modify the value of the href attribute
+    searchLink.attributes['href'].value = 'http://www.google.com';
+
+    console.log(searchLink.attributes['href'].value); // prints http://www.google.com
+</script>
+-----------------------------------------------
+
+DATA ATTRIBUTES     data-*
+// It should be noted that in HTML 5, data-* attributes can be added to HTML elements to provide metadata for an element. The * portion of the name must be at least one character long and should be all lower case. Using custom data attributes coupled with access via JavaScript can be very useful. 
+
+
+
+Let's see an example:
+
+<ul>
+    <li data-dbid="123">Item one</li>
+    <li data-dbid="234">Item two</li>
+</ul>
+<script>
+    // get the main heading h1 by id
+    var listItems = document.getElementsByTagName('li');
+
+    for (var i = 0; i < listItems.length; i++) {
+        var dbId = listItems[i].attributes['data-dbid'].value;
+        console.log(dbId);
+    }
+
+    // prints
+    // 123
+    // 234
+</script>
+As you can see in the example above, adding and accessing custom data attributes is easy, and doing so 
+CAN HELP PROVIDE ORGANIZED ACCESS 
+to element metadata via JavaScript.
+
+    </script>
+</body>
+</html>

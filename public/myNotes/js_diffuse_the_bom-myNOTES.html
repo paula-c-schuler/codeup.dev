@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Defuse the BOM</title>
+</head>
+<body>
+    <h2 id="message">This BOM will self destruct in <span id="timer">5</span> seconds...</h2>
+    <button id="defuser">Defuse the BOM</button>
+    <script>
+        var detonationTimer = 5;
+        var countDownIntervalID = setInterval(updateTimer,1000);
+        function updateTimer()
+        {
+            if (detonationTimer == 0) {
+                alert('EXTERMINATE!');
+                document.body.innerHTML = '';
+                //THIS ABOVE LINE ALLOWS ACCESS TO THE ENTIRE CONTENTS OF THE BODY. IT WOULD CLEAR ALL THE CONTENT IF THE BOMB GOES OFF.  IF TEXT HAD BEEN ENTERED, THE TIMER WOULD SET THE HTML BODY TO SAY JUST "MAXIMILLAN".
+            } else if (detonationTimer > 0) {
+                document.getElementById('timer').innerHTML = detonationTimer;
+            }
+            detonationTimer--;
+        }
+        
+        function defuseTheBOM()
+        {
+            clearInterval(countDownIntervalID);
+            document.getElementById('message').innerHTML = "The BOM is safe! Thanks!";
+        }
+
+        var defuser = document.getElementById('defuser');
+        //'defuser' identifies the button.
+        defuser.addEventListener('click', defuseTheBOM, false);
+        //THIS IS HERE JUST FOR READABILITY. THE addEventListener method can be definied to listen for right or left click, hovers, specific key strokes. Here it listens for left click and binds it to the function call of defuseTheBOM. The click by the user becomes the function call. Role of false question was unanswered. 
+    </script>
+</body>
+</html>
