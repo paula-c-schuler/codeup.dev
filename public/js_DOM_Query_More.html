@@ -6,7 +6,7 @@
 
     <h1 id="main-header">Hello World!</h1>
 
-    <button id="btn1">Click Me!</button>
+    <button id="btn1">One!</button>
     <button id="btn2">Click Me!</button>
     <button id="btn3">Click Me!</button>
     <button id="btn4">Click Me!</button>
@@ -28,14 +28,45 @@
         culpa qui officia deserunt mollit anim id est laborum.
     </p>
     <script> 
-        
-        // // todo: get the sub header element by id
+
+        var mainHeader = document.getElementById('main-header');
+        var subParagraphs = document.getElementsByClassName("sub-paragraph");
         var subHeader = document.getElementById('sub-header');
-        // // todo: set the text color of subHeader to blue
-        subHeader.style.color = "blue";
-        // todo: get all list items
         var listItems = document.getElementsByTagName("li");
-        // todo: set text color on every other list item to grey
+
+        var listener1 = function (event){
+          mainHeader.innerHTML = 'JavaScript is buttoned up';
+        }
+        var listener2 = function (event){
+          subHeader.style.color = "red";
+        }
+        var listener3 = function (event){
+          for (i = 0; i < listItems.length; i++){
+            var dbid = listItems[i].attributes["data-dbid"].value;
+            if ([i] % 2 !== 0){
+                listItems[i].style.color = "red";
+            } 
+            if (dbid == 1){
+                listItems[i].style.color = "green";
+            }
+        }
+        }
+        var listener4 = function (event){
+          subParagraphs[0].innerHTML = "Mission Accomplished! YOU ROCK!";
+        }
+
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var btn3 = document.getElementById("btn3");
+        var btn4 = document.getElementById("btn4");
+
+        btn1.addEventListener('click', listener1, false);
+        btn2.addEventListener('click', listener2, false);
+        btn3.addEventListener('click', listener3, false);
+        btn4.addEventListener('click', listener4, false);
+
+        subHeader.style.color = "blue";
+  
         for (i = 0; i < listItems.length; i++){
         	var dbid = listItems[i].attributes["data-dbid"].value;
         	if ([i] % 2 !== 0){
@@ -45,29 +76,15 @@
         		listItems[i].style.color = "blue";
         	}
         }
-         // todo: get the main header element by id
-        // var mainHeader = document.getElementById('main-header');
-        // todo: set inner html of mainHeader to "JavaScript is Cool"
-        // mainHeader.innerHTML = 'JavaScript is Cool'
-      
-        // todo: set text color of li with dbid = 1 to blue
-        // todo: get all elements with class name sub-paragraph
-        var subParagraphs = document.getElementsByClassName("sub-paragraph");
+     
+        mainHeader.innerHTML = 'JavaScript is Cool';
+        
         console.log(subParagraphs);
-        // todo: change the text in the first sub paragraph to "Mission Accomplished!"
+       
         subParagraphs[0].innerHTML = "Mission Accomplished!";
 
 
-        document.getElementById('btn1').addEventListener('click', listener1, false);
-
-        var listener1 = function (click){
-            event.mainHeader.innerHTML = "JavaScript is Cool" 
-        ;
-        }
-        document.getElementById("test").addEventListener("click", function( event ) {
-    // display the current click count inside the clicked div
-    event.mainHeader.innerHTML = "JavaScript is Cool" + event.detail;
-  }, false);
+        
 
 
 

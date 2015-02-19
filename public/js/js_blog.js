@@ -1,8 +1,3 @@
-
-
-
-
-
 var blog = [
     {
         "title": "This is a title for this",
@@ -30,33 +25,61 @@ var blog = [
         "post": "lorem ipsum dolor and stuff here"
     }
 ];
-var title = 'Blog again';
+// var title = 'Blog again';
 
-var author = 'Isaac Castillo';
+// var author = 'Isaac Castillo';
 
-var category = "development";
-var tags = 'web development';
+// var category = "development";
+// var tags = 'web development';
 
-var post = '<strong>lorem ipsum</strong>';
+// var post = '<strong>lorem ipsum</strong>';
 
-var postTitle = document.getElementById('postTitle');
-postTitle.innerHTML = title;
+// var postTitle = document.getElementById('postTitle');
+// postTitle.innerHTML = title;
 
-var postAuthor = document.getElementById('postAuthor');
-postAuthor.innerHTML = author;
+// var postAuthor = document.getElementById('postAuthor');
+// postAuthor.innerHTML = author;
 
-var postContent = document.getElementById('postContent');
-postContent.innerHTML = post;
+// var postContent = document.getElementById('postContent');
+// postContent.innerHTML = post;
+
+// console.log(blog[0])
+
+
+var postString = "";
+var importPost = document.getElementById("postString");
+
+
+function isWholePost(){
+    for (var i = 0; i < blog.length;i++){
+        // var tagged = blog[i]tags;
+        postString += '<h2>' + blog[i].title + '</h2>';
+        postString += '<p>' + blog[i].post + '</p>'; 
+        postString += '<p>' + blog[i].date;
+        postString += '<span>' + ' by ' + blog[i].author + ' </span>';
+        postString += '<span>' + blog[i].category + '</span>' + ' </p>';
+        var tags = '';
+        element.tags.forEach(function (element,index, array) {
+            tags += element + ", ";
+        });
+        postString += '<p>' + blog[i].post + '</p>';
+        var resultString = '';
+        return resultString;
+        } 
+    }
+
+isWholePost(blog);
+console.log(postString);
+// importPost.innerHTML = postString;
 
 
 
+
+// string += '<h2>' + title + </h2>;
+// repeat for each html want added etc 
 // title
 // date - author - category
 // tags: web, design, html
 // image - post
 
-// title
-// date - author - category
-// tags: web, design, html
-// post
-// 	</script>
+
