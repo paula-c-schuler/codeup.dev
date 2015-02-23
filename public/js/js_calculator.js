@@ -35,40 +35,44 @@ var result = "";
 // var arrayFields = [fieldLeft,operand,fieldRight];
 
 //Does not work. 
-var clearFields = function (event){
-    document.getElementById("operand").value = "";
-    document.getElementById("fieldLeft").innerHTML = "";
-    document.getElementById("fieldRight").innerHTML = "";
-    console.log("i heard you. clear.");
-} 
+//next time, changed .innerHTML to .value
+//still testing
+// var clearFields = function (event){
+//     document.getElementById("operand").value = "";
+//     document.getElementById("fieldLeft").value = "";
+//     document.getElementById("fieldRight").value = "";
+//     console.log("i heard you. clear.");
+// } 
 
 // TRIED TO HAVE ONE FUNCTION FOR ALL FOUR,
 //BUT settled on one function for each operator
-var operandListener = function (event){
-    var operand = this.value;
-    document.getElementById("operand").value = operand;
-    console.log(operand.value);
-    console.log("Hearing");
-        } 
+// var operandListener = function (event){
+//     var operand = this.value;
+//     document.getElementById("operand").value = operand;
+//     console.log(operand.value);
+//     console.log("Hearing");
+//         } 
 
-var subtractListener = function (event){
-    var operand = this.value;
-    document.getElementById("operand").innerHTML = operand;
-    console.log(this.value);
-    console.log("Hearing subtract");
-}
-var multiplyListener = function (event){
-    var operand = this.value;
-    document.getElementById("operand").innerHTML = operand;
-    console.log(this.value);
-    console.log("Hearing multiply");
-}       
-var divideListener = function (event){
-    var operand = this.value;
-    document.getElementById("operand").innerHTML = operand;
-    console.log(this.value);
-    console.log("Hearing divide");
-} 
+// var subtractListener = function (event){
+//     var operand = btnSubtract.value;
+//     document.getElementById("operand").value = operand;
+//     console.log(this.value);
+//     console.log("Hearing subtract");
+// }
+// var multiplyListener = function (event){
+//     // var operand = this.value; DID WORK, NOT ANYMORE
+//     var operand = btnMultiply.value;
+//     document.getElementById("operand").value = operand;
+//     console.log(this.value);
+//     console.log("Hearing multiply");
+// }       
+// var divideListener = function (event){
+//     // var operand = this.value; NO LONGER WORKING
+//     var operand = btnDivide.value;
+//     document.getElementById("operand").value = operand;
+//     console.log(this.value);
+//     console.log("Hearing divide");
+// } 
 
     // for (i = 0; i < arrayFields.length; i++){
     //     var dbid = listItems[i].attributes["data-dbid"].value;
@@ -113,18 +117,18 @@ var divideListener = function (event){
 // }
 
 //THIS ONE WORKS IN APPEARANCE, but value logs as undefined
-var btn1Listener = function (event){
-    input = this.value;
-    document.getElementById("fieldLeft").value = input;
-    console.log(fieldLeft.value);
-    console.log("Hearing 1");
-}
+// var btn1Listener = function (event){
+//     input = btn1.value;
+//     document.getElementById("fieldLeft").value = input;
+//     console.log(fieldLeft.value);
+//     console.log("Hearing 1");
+// }
 //THIS DOES THE SAME AS ABOVE and adds more numbers
 //BUT VALUE LOGS AS UNDEFINED
-var btnListener = function (event){
-    document.getElementById("fieldLeft").value += this.value
-    console.log(fieldLeft.value); 
-}
+// var btnListener = function (event){
+//     document.getElementById("fieldLeft").value += this.value
+//     console.log(fieldLeft.value); 
+// }
 
 //SAME AS ABOVE: If using "1" or 1, value logs as undefined
 // var btn1Listener = function (event){
@@ -137,57 +141,86 @@ var btnListener = function (event){
 //* FIVE COUNTS WITH EACH CLICK
 //* WHICH DID NOT SHOW UP IN fieldLeft as text
 //* and again logged a value of undefined. 
-var btn1Listener = function (event){
-    for (var i = 0; i < 5; i++){
-        fieldLeft[i] += "1";
-        console.log(fieldLeft.value + "left value");
-    }
+// var btn1Listener = function (event){
+//     for (var i = 0; i < 5; i++){
+//         fieldLeft[i] += "1";
+//         console.log(fieldLeft.value + "left value");
+//     }
+// }
+
+// var equalListener = function (event){
+//     console.log("hearing equal");
+//     if (operand.value == "+"){
+//         console.log(fieldLeft.value);
+//         result = fieldLeft.value + fieldRight.value;
+//         console.log("=" + result);
+//     }
+// }
+
+//FROM CLASS Q&A: 
+var buttons = document.getElementsByClassName("buttons");
+//THE ABOVE LINE RETURNS AN ARRAY!!!!! ayiyiyi
+//it says ELEMENTS PLURAL, hence the array
+var spot1Holder = "";
+var spot2Holder = "";
+var operand = "";
+var fieldLeft = document.getElementById("fieldLeft");
+var fieldRight = document.getElementById("fieldRight");
+
+
+//THIS ADDS A LISTENER TO EVERY BUTTON
+//MAKE IT < BUTTONS.LENGTH.  = IS ASSIGNING. 
+for (var i = 0; i < buttons.length; i++){
+    console.log("logging button" + buttons[i]);
+    buttons[i].addEventListener("click", listener, false);
 }
 
-var equalListener = function (event){
-    console.log("hearing equal");
-    if (operand.value == "+"){
-        console.log(fieldLeft.value);
-        result = fieldLeft.value + fieldRight.value;
-        console.log("=" + result);
+function listener (event){
+    console.log("listened");
+    console.log(this.value + "above the iffies");
+    var value = this.value; 
+    if (isNaN(this.value)){
+        console.log(this.value + " isn't number");
+        operand = this.value;
+        document.getElementById("operand").value = operand;
     }
-}
+    else if (operand != ""){
+        console.log(this.value + " this is a number");  
+    } else console.log(this.value + " this is for fieldLeft");
+//     if(isNaN(this.value)){
+//         console.log("listening");
+//         console.log(this.value);
+//         if (this.value == "+" ||
+//             this.value == "-" ||
+//             this.value == "*" ||
+//             this.value == "/"){
+//             document.getElementById("operand").value = this.value;
+//             console.log(this.value + " hearing op button");
+//             console.log(operand.value);
+//         } else if (this.value == "c"){
+//             console.log("clear is heard"); 
+//             document.getElementById("fieldLeft").value = "";
+//             document.getElementById("fieldRight").value = "";
+//             document.getElementById("operand").value = "";
+//         } 
+//     }
+//     else if (operand.value == false){
+//         console.log(operand.value);
+//         var input2Value;
+//         input2Value = this.value;
+//         spot2Holder += input2Value;
+//         document.getElementById("fieldRight").value = spot2Holder;
+//         console.log(spot2Holder + " is spot2Holder");
+//     } else {
+//         var inputValue;
+//         inputValue = this.value;
+//         spot1Holder += inputValue;
+//         document.getElementById("fieldLeft").placeholder = spot1Holder;
+//         console.log(spot1Holder + " is spot1Holder");
+//     }
+} 
+    
 
-btnEqual = document.getElementById("btnEqual");
-btnClear = document.getElementById("btnClear");
-btnAdd = document.getElementById("btnAdd");
-btnSubtract = document.getElementById("btnSubtract");
-btnMultiply = document.getElementById("btnMultiply");
-btnDivide = document.getElementById("btnDivide");
-btn1 = document.getElementById("btn1");
-btn2 = document.getElementById("btn2");
-btn3 = document.getElementById("btn3");
-
-
-btnEqual.addEventListener("click", equalListener, false);
-btnClear.addEventListener("click", clearFields, false);
-btnAdd.addEventListener("click", operandListener, false);
-btnSubtract.addEventListener("click", subtractListener, false);
-btnMultiply.addEventListener("click", multiplyListener, false);
-btnDivide.addEventListener("click", divideListener, false);
-btn1.addEventListener("click", btn1Listener, false);
-// btn2.addEventListener("click", numListener, false);
-// btn3.addEventListener("click", numListener, false);
-
-// var numListener = function (event){
-//           for (i = 0; i < .length; i++){
-//             var dbid = listItems[i].attributes["data-dbid"].value;
-//             if ([i] % 2 !== 0){
-//                 listItems[i].style.color = "red";
-//             } 
-//             if (dbid == 1){
-//                 listItems[i].style.color = "green";
-//             }
-//         }
-//         }
-//         var makeInput1 = function (event){
-//           
-//         }
 
 
 
