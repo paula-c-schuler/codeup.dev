@@ -52,25 +52,25 @@ var importPost = document.getElementById("postString");
 
 function isWholePost(){
     for (var i = 0; i < blog.length;i++){
-        // var tagged = blog[i]tags;
         postString += '<h2>' + blog[i].title + '</h2>';
         postString += '<p>' + blog[i].post + '</p>'; 
         postString += '<p>' + blog[i].date;
         postString += '<span>' + ' by ' + blog[i].author + ' </span>';
         postString += '<span>' + blog[i].category + '</span>' + ' </p>';
         var tags = '';
-        element.tags.forEach(function (element,index, array) {
+        blog[i].tags.forEach(function (element,index, array) {
             tags += element + ", ";
         });
+        postString += '<h3>' + tags + '</h3>';
         postString += '<p>' + blog[i].post + '</p>';
-        var resultString = '';
-        return resultString;
+        // var resultString = '';
+        // return resultString;
         } 
     }
 
 isWholePost(blog);
 console.log(postString);
-// importPost.innerHTML = postString;
+importPost.innerHTML = postString;
 
 
 
