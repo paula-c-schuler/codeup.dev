@@ -185,8 +185,16 @@ function listener (event){
         document.getElementById("operand").value = operand;
     }
     else if (operand != ""){
-        console.log(this.value + " this is a number");  
-    } else console.log(this.value + " this is for fieldLeft");
+        console.log(this.value + " this is a number");
+        fieldRight.value += this.value;
+        console.log(fieldRight + " is fieldRight");
+        // document.getElementById("fieldRight").value = fieldRight; 
+    } else {
+        console.log(this.value + " this is for fieldLeft");
+        fieldLeft.value += this.value;
+        console.log(fieldLeft + " is fieldLeft");
+    }
+
 //     if(isNaN(this.value)){
 //         console.log("listening");
 //         console.log(this.value);
