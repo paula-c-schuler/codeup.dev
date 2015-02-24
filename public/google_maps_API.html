@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>google_maps_API</title>
+	<style type="text/css">
+	#map_canvas {
+		width: 400px;
+		height: 400px;
+	}
+	</style>	
+</head>
+<body>
+	<div id="map_canvas"></div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=CONTACT ME TO SEE PAGE"></script>
+	<script type="text/javascript">
+		var address = "12656 West Avenue, San Antonio, TX, 78216";
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode( {"address":address},function(results,status){
+			console.log(results);
+			console.log(status);
+			if (status == google.maps.GeocoderStatus.OK) {
+				var mapOptions = {
+				zoom: 15,
+				center: results[0].geometry.location
+				// center: { lat: , lng:   }
+				}
+				var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+				var marker = new google.maps.Marker({
+					position: results[0].geometry.location,
+					map: map
+				});
+				console.log(marker + " is marker");
+				var infoWindow = new google.maps.InfoWindow({
+					content: "Award-winning BBQ."
+				});
+				infoWindow.open(map,marker);
+			} else
+				alert("Geocoding was not successful - STATUS: " + status);
+		});
+		</script>
+</body>
+</html>
