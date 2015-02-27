@@ -9,18 +9,9 @@
 	// <script type="text/javascript">
 	$(document).ready(function(){
 		// alert("DOM is finished loading");
-	$("h1").click(function(){
-		$("h1").css("background-color", "pink");
-	});
-	$("p").dblclick(function(){
-		$("p").css("font-size", "18px")
-	});
-	$("li").hover(
-		function(){
-			$("li").css("color", "red");
-		},
-		function (){
-			$("li").css("color", "white");
+		$("#getit").html(function(){
+			var howdy = $("#getit");
+			alert(howdy.html());
 		});
 	});
 	</script>
@@ -28,11 +19,11 @@
 	<h1>So you want to buy a home. Here are some quick tips.</h1>
 
 	<p id="paragraph"> <h2>Real Estate is always changing for many reasons.</h2>
-		<p id="codeup">Real estate is never static because money, land and people are constantly moving. Even the condition of a piece of land or the improvements on it, like homes, barns or a mall, are always changing over time. Here are some things to consider when purchasing a home:</p>
+		<p id="code">Real estate is never static because money, land and people are constantly moving. Even the condition of a piece of land or the improvements on it, like homes, barns or a mall, are always changing over time. Here are some things to consider when purchasing a home:</p>
 
 		<h5 class="codeup"> (Not in any order of priority)</h5>
 		<ul> 
-			<li class="think">Cash available for the purchase.
+			<li class="think" id="cash">Cash available for the purchase.
 			</li>
 			<li class="think">Personal assets in terms of skills for property maintenance and improvement vs. the need to hire contractors to do jobs.
 			</li>
@@ -43,7 +34,7 @@
 		These are some of the steps for purchasing a home efficiently:<br>
 		<h5> (In order of priority)</h5>
 		<li id="list"> 
-			<li class="steps">Interview lenders. Follow their instructions for receiving any gifts from family. Get mortgage preapproval and your price range.
+			<li class="steps" id="getit">Interview lenders. Follow their instructions for receiving any gifts from family. Get mortgage preapproval and your price range.
 			</li>
 			<li class="steps">Interview reputable real estate agents for representation and sign a buyer representation agreement.
 			</li>
