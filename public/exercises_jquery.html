@@ -8,14 +8,22 @@
 	<script type="text/javascript" src="/jquery-2.1.3.js"></script>
 	// <script type="text/javascript">
 	$(document).ready(function(){
-		alert("DOM is finished loading");
-		$(".codeup").css("background-color", "blue");
+		// alert("DOM is finished loading");
+	$("h1").click(function(){
+		$("h1").css("background-color", "pink");
+	});
+	$("p").dblclick(function(){
+		$("p").css("font-size", "18px")
+	});
+	$("li").hover(
+		function(){
+			$("li").css("color", "red");
+		},
+		function (){
+			$("li").css("color", "white");
+		});
 	});
 	</script>
-
-<!-- $(_selected_element_).css(propertyName.value);
-this is how to access the css programming with jQuery
-  -->
 	<div class="codeup">
 	<h1>So you want to buy a home. Here are some quick tips.</h1>
 
@@ -35,11 +43,11 @@ this is how to access the css programming with jQuery
 		These are some of the steps for purchasing a home efficiently:<br>
 		<h5> (In order of priority)</h5>
 		<li id="list"> 
-			<li class="steps">Receive any gifts from family, then get approved for a mortgage.
+			<li class="steps">Interview lenders. Follow their instructions for receiving any gifts from family. Get mortgage preapproval and your price range.
 			</li>
-			<li class="steps">Interview reputable real estate agents for representation.
+			<li class="steps">Interview reputable real estate agents for representation and sign a buyer representation agreement.
 			</li>
-			<li class="steps" id="codeup">Go shopping. 
+			<li class="steps" id="codeup">Go shopping with a written list of your "must have" and "want to have" features. 
 			</li>
 		</li>
 
