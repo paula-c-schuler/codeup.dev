@@ -6,19 +6,73 @@
 <body>
 	
 	<script type="text/javascript" src="/jquery-2.1.3.js"></script>
-	// <script type="text/javascript">
+	<script type="text/javascript">
+	codesArray = [];
+	myName = [80,65,85,76,65];
 	$(document).ready(function(){
 		// alert("DOM is finished loading");
-		$("li").css("font-size", "20px");
-		$("h1,p,li").css("background-color", "yellow");
-		$("h1").html(function(){
-			var wow = $("h1");
-			alert(wow.html());
-		});
+		$(document).keydown(function(event){
+			console.log(event.keyCode + " is keyCode");
+			
+
+			//grab sequence of keys
+			codesArray.push(event.keyCode);
+			console.log(codesArray + " is codesArray");
 		
+
+			//when they match your name, attach that name to the h1 tag above
+			for (var i = 0; i < codesArray.length; i++){
+				if (codesArray.length >= 5) {
+					console.log(codesArray[codesArray.length-1]);
+					console.log(codesArray.slice(codesArray.length-5));
+					newArray = codesArray.slice(codesArray.length-5);
+					// console.log(newArray);
+					myName = [80,65,85,76,65];
+					arraysEqual(newArray, myName);
+
+//					.inArray seemed ineffective. always alerted regardless
+					// if ($.inArray('112')) {
+					// alert('112 found');
+					//       }
+					//       else {
+					//         alert('not found');
+
+//					.POP didn't not prove good for this.
+					// // var poppedArray = [];
+					// }
+					// poppedArray.push(codesArray.pop());
+					// console.log(poppedArray + "popped array")
+					// console.log(popped + " is popped");
+				}	
+			}
+			function arraysEqual(newArray,myName){
+				for(i = 0; i < myName.length; i++) {
+					console.log(newArray);
+					console.log(myName);
+        			if(myName[i] != newArray[i]){
+        				return false;
+        				break;
+          			  // console.log("arrays equal");
+          			  //doing .log every time regardless
+          			  //going to try not equals like in simon
+          			} else { console.log ("ugh");
+          			}
+				}
+			}
+
+			//create this sequence and alert('You have an additional 30 lives.')
+			// up up down down left right left right b a b a enter
+		});
+
 	});
 	</script>
 	<div class="codeup">
+		<!-- <form> -->
+			<h1>Please type here:</h1>
+			<!-- <input type="text" id="box"> -->
+		<!-- </form>	 -->
+
+
 	<h1>So you want to buy a home. Here are some quick tips.</h1>
 
 	<p id="paragraph"> <h2>Real Estate is always changing for many reasons.</h2>
