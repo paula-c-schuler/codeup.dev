@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title>jQuery_FAQ_exercise</title>
+</head>
+<link rel="stylesheet" href="/css/jquery_FAQ.css">
+
+<body>
+
+
+
+
+
+<h1> Fascinating Stuff about the National Parks</h1>
+
+	<dl>
+		<dt>National Heritage Area</dt>
+		<dd class="invisible">National Heritage Areas are places where natural, cultural, historic, and recreational elements come together to form a cohesive, nationally distinct landscape. The results are landscapes shaped by human activity. National Heritage Areas are representative of the national experience through the physical features that remain and the traditions that evolved in the area.
+		</dd>
+		<dt>National Historic Park</dt>
+		<dd class="invisible">This designation generally applies to historic parks that extend beyond single properties or buildings.
+		</dd>
+		<dt>National Historic Site</dt>
+		<dd class="invisible">Usually, a national historic site contains a single historical feature that was directly associated with a person or family of historical significance. These areas may also be associated with specific historic periods that are important in American history. Derived from the Historic Sites Act of 1935, a number of historic sites were established by secretaries of the Interior, but most have been authorized by acts of Congress.
+		</dd>
+		<dt>National Historic Trail</dt>
+		<dd class="invisible">National historic trails are long-distance footpaths authorized under the National Trails System Act of 1968. National historic trails tend to pass through or along areas of historic signifigance.
+		</dd>
+		<dt>National Lakeshore</dt>
+		<dd class="invisible">National lakeshores are parks devoted to preserving natural resources as well as providing water-based recreation. All of the national lakeshores are on the shores of the Great Lakes and are very similar to the national seashores in character and use.
+		</dd>
+		<dt>National Monoument</dt>
+		<dd class="invisible">The designation of national monument has been applied to a variety of sites with the park system. It has been used for historic military fortifications, prehistoric ruins, fossil sites, and even the Statue of Liberty.
+		</dd>
+		<dt>National Park</dt>
+		<dd class="invisible">These are generally large natural places having a wide variety of features, at times including significant historic assets. Hunting, mining, and or any activities that “consume” park resources are not authorized in national parks.
+		</dd>
+		<dt>National Parkway</dt>
+		<dd class="invisible">corridor and often connect cultural sites.
+		</dd>
+		<dt>National Preserve</dt>
+		<dd class="invisible">National preserves are areas having characteristics associated with national parks, but in which Congress has permitted continued public hunting, trapping, or oil and gas exploration and extraction. Many existing national preserves, without sport hunting, would qualify for national park designation. Many parks in Alaska fall into the category of national preserve.
+		</dd>
+		<dt>National River</dt>
+		<dd class="invisible">There are several variations to this category: national river and recreation area, national scenic river, wild river, etc. The first was authorized in 1964 and others were established following passage of the Wild and Scenic Rivers Act of 1968. These areas preserves land along the edges of free-flowing rivers and streams and also provide opportunities for hiking, canoeing, and hunting.
+		</dd>
+		<h5>Source: </h5>
+		<a id="action" href="#">Toggle for Exercise</a>
+	</dl>
+
+	<dl>
+		<dd class="invisible">The National Park Ser­vice oper­ates roughly 401 units which include 79 National Mon­u­ments, 78 His­tor­i­cal Sights, 59 National Parks, and 46 His­tor­i­cal Parks all con­tained within 84 mil­lion acres. 
+		</dd> 
+		<dd class="invisible">The parks host 280 mil­lion vis­i­tors a year.
+		</dd>
+		<dd class="invisible">Althoughthe dis­tri­b­u­tion of National Parks is fairly spread out through the United States, the most con­cen­trated area lies within the states of Col­orado, Utah, and Cal­i­for­nia. 
+		</dd>
+		<dd class="invisible">The geo­graphic loca­tion in need of more National Parks cur­rently is the Mid­west with the clos­est loca­tions being in South Dakota, Arkansas, Ken­tucky, or Col­orado.
+		</dd>
+		<dd class="invisible">The larget by acerage is Wrangell-St. Elias National Park in Alaska, which has over 8,000,000 acres. 
+		</dd>
+		<dd class="invisible">Back in 1872, when the United States was rapidly expand­ing west­ward, con­gress pre­served Yel­low­stone Coun­try as the first area in the world des­ig­nated “as a pub­lic park or plea­sur­ing ground for the ben­e­fit and enjoy­ment of the peo­ple.”
+		</dd>
+		<dd class="invisible">By 1916, 14 National Parks and 21 National Mon­u­ments were approved by con­gress without a system for maintenance. 
+		</dd>
+		<dd class="invisible">In 1916, responding to the need for maintenance, President Woodrow Wil­son approved leg­is­la­tion cre­at­ing the National Park Ser­vice that we know today.
+		</dd>
+		<dd class="invisible"> The National Parks are a host of extremes. From the deep­est lake at Crater Lake NP (1932 feet), or the tallest trees in the world at Red­wood NP (397 feet). 
+		</dd>
+		<dd class="invisible">When visiting the Grand Canyon, I personally noticed that the languages spoken by visitors were mainly foreign. Only about 10-15% of the visitors that day a few years ago spoke English. Most of the cars entering the park were rentals from Enterprise, noted by the logo stickers on their vehicles. 
+		</dd>
+	</dl>
+
+<h5>Source: http://www.theclymb.com/stories/out-there/fun-facts-national-park-service/</h5>
+
+<script type="text/javascript" src="/js/jquery_library.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	// alert("DOM IS UP");
+	// $("dd").addClass("invisible");
+	// $(".invisible").css("display","none");
+
+	$("a").on('click', function(event) {
+		console.log("yes");
+        event.preventDefault();
+        $("dd").toggleClass("invisible");
+        // $('dd').css('display', 'block');
+    });
+    $("dt").click(function(event){
+    	event.preventDefault();
+    	var nextOne = $(this).next();
+    	//.NEXT gives us the next html element
+    	.nextOne.slideToggle(3000);
+    	.nextOne.fadeToggle("slow");
+//SWEET LITTLE FUN THING, even sets a delay or time for it to act
+//can also say "slow" or "fast". 
+//MIGHT MESS UP ANCHOR TAG TOGGLE, USE ONE OR THE OTHER.
+    });
+});
+//MISUNDERSTOOD ASSIGNMENT WHICH INTENDED WE CREATE JS AND CSS FILES.
+//I DID IT INLINE FIRST. IT WORKED WHEN THE FILES WERE SPLIT OUT. 
+</script>
+
+</body>
+</html>

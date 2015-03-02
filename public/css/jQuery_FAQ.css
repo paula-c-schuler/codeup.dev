@@ -1,0 +1,13 @@
+body {
+	font-family: Verdana;
+	font-size: 16;
+	font-weight: normal;
+	background-color: #66990;
+}
+h1{
+
+}
+
+.invisible {
+	display: none;
+}

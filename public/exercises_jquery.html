@@ -9,62 +9,70 @@
 	<script type="text/javascript">
 	codesArray = [];
 	myName = [80,65,85,76,65];
+	userArray = [];
+	gameArray = [38,38,40,40,37,39,37,39,66,65,66,65,13];
+	function getNewArray (codesArray){
+		if (codesArray.length >= 5) {
+			newArray = codesArray.slice(codesArray.length-5);
+			console.log(newArray + " is newArray");
+			console.log(myName + " is myName");
+			compare(myName,newArray);
+		}	
+	}
+	function compare (myName,newArray){
+		var soFarSoGood = false; 
+		// Variable initialized to false so 
+		//it must change if iterated element is true.
+		for (i = 0; i < myName.length; i++){
+			if (myName[i] == newArray[i]){
+				soFarSoGood = true;
+			} else {
+				soFarSoGood = false; 
+				// console.log("no match");
+			}
+		}
+		if (soFarSoGood){
+			$("h1").html("Paula");
+		}
+	};
+	function getGameArray (codesArray){
+		console.log("in getgamearray function");
+		if (codesArray.length >= 13){
+			userArray = codesArray.slice(codesArray.length-13);
+			console.log(userArray + " is userArray");
+			console.log(gameArray + " is gameArray");
+			compareGame(userArray,gameArray);
+		}
+	};
+	function compareGame (userArray,gameArray){
+	 	var soFarSoFun = false; 
+	 	for (i = 0; i < myName.length; i++){
+	 		if (userArray[i] == gameArray[i]){
+	 			soFarSoFun = true;
+	 		} else {
+	 			soFarSoFun = false; 
+	 			console.log("no match");
+	 		}
+	 	}
+	 	if (soFarSoFun){
+			alert('You have an additional 30 lives.')
+	 	}
+	};
+// 	//grab sequence of keys
+//when they match your name, attach that name to the h1 tag above
+//create this sequence and alert('You have an additional 30 lives.')
+			// up up down down left right left right b a b a enter
 	$(document).ready(function(){
-		// alert("DOM is finished loading");
+		alert("DOM loaded with javascript");
 		$(document).keydown(function(event){
 			console.log(event.keyCode + " is keyCode");
-			
-
-			//grab sequence of keys
 			codesArray.push(event.keyCode);
-			console.log(codesArray + " is codesArray");
-		
-
-			//when they match your name, attach that name to the h1 tag above
-			for (var i = 0; i < codesArray.length; i++){
-				if (codesArray.length >= 5) {
-					console.log(codesArray[codesArray.length-1]);
-					console.log(codesArray.slice(codesArray.length-5));
-					newArray = codesArray.slice(codesArray.length-5);
-					// console.log(newArray);
-					myName = [80,65,85,76,65];
-					arraysEqual(newArray, myName);
-
-//					.inArray seemed ineffective. always alerted regardless
-					// if ($.inArray('112')) {
-					// alert('112 found');
-					//       }
-					//       else {
-					//         alert('not found');
-
-//					.POP didn't not prove good for this.
-					// // var poppedArray = [];
-					// }
-					// poppedArray.push(codesArray.pop());
-					// console.log(poppedArray + "popped array")
-					// console.log(popped + " is popped");
-				}	
-			}
-			function arraysEqual(newArray,myName){
-				for(i = 0; i < myName.length; i++) {
-					console.log(newArray);
-					console.log(myName);
-        			if(myName[i] != newArray[i]){
-        				return false;
-        				break;
-          			  // console.log("arrays equal");
-          			  //doing .log every time regardless
-          			  //going to try not equals like in simon
-          			} else { console.log ("ugh");
-          			}
-				}
-			}
-
-			//create this sequence and alert('You have an additional 30 lives.')
-			// up up down down left right left right b a b a enter
+			getNewArray(codesArray);
+			getGameArray(codesArray);
 		});
-
 	});
+				
+	
 	</script>
 	<div class="codeup">
 		<!-- <form> -->

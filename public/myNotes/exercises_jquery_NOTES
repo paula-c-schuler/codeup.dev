@@ -1,0 +1,56 @@
+<!-- NO NOTES -->
+
+<html>
+<head>
+	<title>exercises_jquery</title>
+	
+</head>
+<body>
+	
+	<div class="codeup">
+		<!-- <form> -->
+			<h1>Please type here:</h1>
+			<!-- <input type="text" id="box"> -->
+		<!-- </form>	 -->
+
+
+	<h1>So you want to buy a home. Here are some quick tips.</h1>
+
+	<p id="paragraph"> <h2>Real Estate is always changing for many reasons.</h2>
+		<p id="codeup">Real estate is never static because money, land and people are constantly moving. Even the condition of a piece of land or the improvements on it, like homes, barns or a mall, are always changing over time. Here are some things to consider when purchasing a home:</p>
+
+		<h5 class="codeup"> (Not in any order of priority)</h5>
+		<ul> 
+			<li class="think" id="cash">Cash available for the purchase.
+			</li>
+			<li class="think">Personal assets in terms of skills for property maintenance and improvement vs. the need to hire contractors to do jobs.
+			</li>
+			<li class="think">Lifestyle and social preferences.
+			</li>
+		</ul>
+
+		These are some of the steps for purchasing a home efficiently:<br>
+		<h5> (In order of priority)</h5>
+		<li id="list"> 
+			<li class="steps" id="getit">Interview lenders. Follow their instructions for receiving any gifts from family. Get mortgage preapproval and your price range.
+			</li>
+			<li class="steps">Interview reputable real estate agents for representation and sign a buyer representation agreement.
+			</li>
+			<li class="steps">Go shopping with a written list of your "must have" and "want to have" features. 
+			</li>
+		</li>
+
+	</p>
+	</div>
+
+	<div class="codeup">
+		<button>Find a Lender
+		</button>
+		<button>Find an Agent
+		</button>
+		<button>Contact Us
+		</button>
+
+	</div>
+</body>
+</html>
