@@ -70,34 +70,45 @@
 		</dd>
 	</dl>
 
+	<h3>Yellowstone National Park</h3>
+	<ul>
+		<li>World's first national park.
+		</li>
+		<li>A designated World Heritage Site and designated Biosphere Reserve
+		</li>
+		<li>More than 300 geysers.
+		</li>
+		<li>An active volcano.
+		</li>
+	</ul>
+
+		<h3>Grand Canyon National Park</h3>
+	<ul>
+		<li>Can camp and travel down the river, but this is in high demand and often spaces are given out by lottery. It's complicated.
+		</li>
+		<li>Nearly 5 million visit each year.
+		</li>
+		<li>The canyon was given federal protection first in 1893.
+		</li>
+		<li>It is not the deepest canyon in the world (both the Barranca del Cobre in northern Mexico and Hell's Canyon in Idaho are deeper, just to name two), but the Grand Canyon is known throughout the world for its overwhelming size and its intricate and colorful landscape. </li>
+	</ul>
+
 <h5>Source: http://www.theclymb.com/stories/out-there/fun-facts-national-park-service/</h5>
 
 <script type="text/javascript" src="/js/jquery_library.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	// alert("DOM IS UP");
-	// $("dd").addClass("invisible");
-	// $(".invisible").css("display","none");
+	alert("DOM IS UP");
 
-	$("a").on('click', function(event) {
-		console.log("yes");
-        event.preventDefault();
-        $("dd").toggleClass("invisible");
-        // $('dd').css('display', 'block');
-    });
-    $("dt").click(function(event){
-    	event.preventDefault();
-    	var nextOne = $(this).next();
-    	//.NEXT gives us the next html element
-    	.nextOne.slideToggle(3000);
-    	.nextOne.fadeToggle("slow");
-//SWEET LITTLE FUN THING, even sets a delay or time for it to act
-//can also say "slow" or "fast". 
-//MIGHT MESS UP ANCHOR TAG TOGGLE, USE ONE OR THE OTHER.
-    });
-});
-//MISUNDERSTOOD ASSIGNMENT WHICH INTENDED WE CREATE JS AND CSS FILES.
-//I DID IT INLINE FIRST. IT WORKED WHEN THE FILES WERE SPLIT OUT. 
+	$("ul").each(function(index){
+		$(this).children().first().css("font-weight", "bold");
+	});
+	$("li").click(function(){
+		console.log("heard click");
+		$(this).parent().addClass("invisible");
+	});
+	});
+}); 
 </script>
 
 </body>
