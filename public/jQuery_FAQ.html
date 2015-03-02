@@ -6,10 +6,6 @@
 
 <body>
 
-
-
-
-
 <h1> Fascinating Stuff about the National Parks</h1>
 
 	<dl>
@@ -100,15 +96,30 @@
 $(document).ready(function(){
 	alert("DOM IS UP");
 
+	$("a").on('click', function(event) {
+		console.log("yes");
+        event.preventDefault();
+        $(".invisible").toggle();
+        $('dd').fadeOut(2500);
+    });
+    $("dt").click(function(event){
+    	event.preventDefault();
+    	var nextOne = $(this).next();
+    	//.NEXT gives us the next html element
+    	// .nextOne.slideToggle(3000);
+    	// .nextOne.fadeToggle("slow");
+	 });
+
 	$("ul").each(function(index){
 		$(this).children().first().css("font-weight", "bold");
 	});
-	$("li").click(function(){
+	$("h3").click(function(){
 		console.log("heard click");
-		$(this).parent().addClass("invisible");
+		$(this).parent().children().children().fadeToggle(2500);
+		// $(this).parent().hide();
 	});
-	});
-}); 
+});
+// }); 
 </script>
 
 </body>
