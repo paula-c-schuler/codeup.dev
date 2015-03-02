@@ -11,3 +11,6 @@ h1{
 .invisible {
 	display: none;
 }
+#national-parks, #state-parks-texas {
+    display: none;
+}
