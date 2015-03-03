@@ -81,5 +81,3 @@ importPost.innerHTML = postString;
 // date - author - category
 // tags: web, design, html
 // image - post
-
-
