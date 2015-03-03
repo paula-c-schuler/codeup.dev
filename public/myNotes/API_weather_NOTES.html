@@ -1,0 +1,44 @@
+<!-- <!DOCTYPE html> -->
+<html>
+<head>
+    <title>My Weather App</title>
+    <style type="text/css">
+    body {
+    	background-color: #BFEEF8;
+    }
+
+    </style>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <h1>My Weather App</h1>
+    <h2>Today's Weather</h2>
+
+    <div id="weather"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+(function() {
+    var weatherDisplay = $('#weather');
+    weatherHtml = '';
+
+    var currentWeather = $.ajax('http://api.openweathermap.org/data/2.5/weather?q=San+Antonio,TX');
+    //QUESTION MARK IN THIS STRING IS THE GET REQUEST
+
+    currentWeather.done(function(data) {
+        console.log(data);
+    });
+})();
+</script>
+
+</body>
+</html>
