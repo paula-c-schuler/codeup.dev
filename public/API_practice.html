@@ -2,12 +2,9 @@
 <html>
 <head>
     <title>My Weather App</title>
-    <style type="text/css">
-
-
-    </style>
         <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/API_practice.css">
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -16,132 +13,31 @@
 </head>
 <body>
 
-    <h1>My Weather App</h1>
+    <!-- <h1>My Weather App</h1>
     <h2>Today's Weather</h2>
 
-    <div id="weather"></div>
+    <div id="weather"></div> -->
 
     <div class="container">
-        <div class="row" id="header">
-            <div class="row" id="under-header">
+        <div class="header" id="header">Weather Application
+            <div class="subheader" >San Antonio
             </div>
-            <div class="row" id="hold-forecasts">
-                <div class="col-md-4" id="1">.col-md-4</div>
-                <div class="col-md-4" id="2">.col-md-4</div>
-                <div class="col-md-4" id="3">.col-md-4</div>
+            <div id="hold-forecasts">
+                
             </div>
-        </div>                
+        </div>
+        <div id="map-canvas"></div>              
     </div>
 
 
 
     </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgcqmvTRhwYIbQqLQ2yo6HPg8el6FRqj4">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/API_practice.js"></script>
 
 
-
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-<script>
-// *************** WEATHER API PRACTICE ********************
-//data needed: 
-//current weather including:
-//city, 
-//high temp F
-//low temp F
-// icon.png for day's weather
-//wind
-//
-// MY API KEY IS d00068236e1ca2110cc252b202794ecb
-
-(function() {
-    weatherHtml = '';
-
-    var currentWeather = $.ajax('http://api.openweathermap.org/data/2.5/weather?q=San+Antonio,TX');
-
-    // QUESTION MARK IN THIS STRING IS THE GET REQUEST
-// .data.main.temp and others were determined by scrutinizing the json object returned
-// in the console and finding the tree positions of the data we need.
-    
-    currentWeather.done(function(data) {
-        console.log(data);
-        var currentTemp = "<p>" + "Current temp: " + parseInt((data.main.temp -273.15) * 1.8 + 32) + "°F</p>";
-        var icon = '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">';
-        var windSpeed = "<p>" + "Wind speed: " + data.wind.speed + "</p>";
-        var humidity = "<p>" + "Humidity: " + data.main.humidity + "</p>";
-        var pressure = "<p>" + "Pressure: " + data.main.pressure + "</p>";
-
-        var weatherToDisplay = currentTemp + icon + windSpeed + humidity + pressure;
-        $("#weather").html(weatherToDisplay);
-    });
-
-
-//NOTE TO SELF, CAN I CONJUNCT THE ITEMS BELOW THAT ARE GOING TO BE GROUPED TOGETHER OR THAT ARE IN THE SAME OBJECT, SUCH AS TEMPS AND WEATHER MAIN/DESCRIPTION? 
-
-//we need a round counter like the button refresh. 
-
-    forecastString = "";
-    i = "";
-
-    var forecast = $.ajax('http://api.openweathermap.org/data/2.5/forecast/daily?lat=29.423017&lon=-98.48527&cnt=3&mode=json');
-
-    forecast.done(function(data){
-        console.log(data);
-        $(data.list).each(function(element,index){
-            console.log(data.list);
-            $(element.temp).each(function(element,index){
-                console.log(element.temp);
-                if (i == "day"){
-                    var dayTemp = day.value;
-                } else if (i == "eve"){
-                    var eveTemp = eve.value;
-                } else {console.log("didn't get in the if loop");
-                }
-            })
-            // blog[i].tags.forEach(function (element,index, array) {
-            // tags += element + ", ";
-        });
-            // var dayTemp = element.temp.day;
-            // var hiTemp = parseInt((element.temp.day -273.15) * 1.8 + 32) + "°";
-            // var loTemp = parseInt((element.temp.eve -273.15) * 1.8 +32) + "°";
-            
-            var icon = '<img src="http://openweathermap.org/img/w/' + element.weather[0].icon + '.png">';
-
-            var main = element.weather.main
-            var description = element.weather.description 
-            
-            var humidity = element.humidity;
-            var windSpeed = element.speed;
-            var pressure = element.pressure;
-
-
-        })
-            
-
-
-
-
-
-
-
-    });
-
-
-
-
-
-})();
-
-
-   
-
-
-
-
-</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->

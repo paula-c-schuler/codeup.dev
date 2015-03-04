@@ -1,11 +1,52 @@
 body {
 	margin: 200px;
+	/*background-color: #ABDCFD;*/
+}
+
+.container {
+	height: auto;
+	height: 800px;
+	width: 800px;
 	background-color: #ABDCFD;
 }
 
+#hold-forecasts {
+	height: 280px;
+	width: 780px;
+	padding: 15px;
+}
+#map-canvas {
+	height: 500px;
+	width: 780px;
+	padding: 0px;
+}
 
+.header {
+	width: 774px;
+	padding-left: 10px;
+	text-indent: 5px;
+	font-size: 35px;
+}
+
+.subheader {
+	width: 774px;
+	padding-left: 10px; 
+	text-align: left;
+	font-size: 25px;
+}
 
 .col-md-4 {
+	height: 250px;
+	width: 250px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	text-align: center;
+	font-size: 12px;
 	background-color: #F2F2F2;
+	padding: 15px;
 }
+
+span {
+	font-size: 25px;
+}
+
