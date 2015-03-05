@@ -1,42 +1,4 @@
-// *************** WEATHER API PRACTICE ********************
-//FIRST PORTION NOTE USED FOR FOLLOWING EXERCISES ON SAME FILE, 
-//REFER TO THREE-DAY FORECAST FOR ACTIVE WORK ON THE HTML FILE.
-
-
-(function(){
-    // weatherHtml = '';
-
-    // var currentWeather = $.ajax('http://api.openweathermap.org/data/2.5/weather?q=San+Antonio,TX');
-  
-    // currentWeather.done(function(data) {
-    //     console.log(data);
-    //     var currentTemp = "<p>" + "Current temp: " + parseInt((data.main.temp -273.15) * 1.8 + 32) + "°F</p>";
-    //     var icon = '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">';
-    //     var windSpeed = "<p>" + "Wind speed: " + data.wind.speed + "</p>";
-    //     var humidity = "<p>" + "Humidity: " + data.main.humidity + "</p>";
-    //     var pressure = "<p>" + "Pressure: " + data.main.pressure + "</p>";
-
-    //     var weatherToDisplay = currentTemp + icon + windSpeed + humidity + pressure;
-    //     $("#weather").html(weatherToDisplay);
-    // });
-
-//****************** FOR THE THREE-DAY FORECAST ***************//
-//***** LEARNED .DONE FUNCTIONS IN AJAX REQUIRE REQUIRE REQUIRE
-//***** AN ANONYMOUS FUNCTION. BUT -- THE ANONYMOUS FUNCTION
-//***** CAN BE USED TO PASS DATA FROM MANY AJAX TO ONE MAJOR FUNCTION//
-    fString = "";
-    newCity = "";
-    gotCity = "";
-    userForecast = [];
-    newCity = function(lat,lng){
-        var gotCity = 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=' + lat + '&lon=' + lng + '&cnt=3&mode=json';
-        console.log(gotCity + " is gotCity");
-        return gotCity;
-    }
-//THIS IS THE BUTLER THAT GETS CALLED BY THE OTHER SETS OF DATA
-    function everyForecast(data){
-        console.log("hi");
-        console.log(data);
+// console.log(data);
 
         fString += '<div class="row">';
 
@@ -106,7 +68,7 @@
            position : map.getCenter(),
            draggable: true,
            map : map
-        });
+        })
         
         google.maps.event.addListener(marker, "dragend", function(event) { 
           var lat = event.latLng.lat(); 
@@ -115,34 +77,4 @@
           console.log(lng);
           newCity(lat,lng);
         }); 
-    // });
-    }
-//THE ORIGINAL FORECAST AJAX AND .DONE
-    var originForecast = $.ajax('http://api.openweathermap.org/data/2.5/forecast/daily?lat=29.423017&lon=-98.48527&cnt=3&mode=json');
-
-    originForecast.done(function(data){
-        everyForecast(data);
     });
-
-    originForecast.fail(function(){
-        console.log(" origin ajax fail");
-    });
-
-    // var userForecast = $.ajax(gotCity);
-    // console.log("second ajax working");
-
-    // userForecast.done(function(data){
-    //     console.log(data + " is userForecast data");
-    //     everyForecast(data);
-    //     console.log("userForecast done reached");
-    // });
-
-    // userForecast.fail(function(){
-    //     console.log(" user ajax fail");
-    // });
-})();
-
-
-
-
-
