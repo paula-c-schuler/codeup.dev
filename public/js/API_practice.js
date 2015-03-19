@@ -109,11 +109,27 @@
         });
         
         google.maps.event.addListener(marker, "dragend", function(event) { 
-          var lat = event.latLng.lat(); 
-          var lng = event.latLng.lng(); 
-          console.log(lat);
-          console.log(lng);
-          newCity(lat,lng);
+            var lat = event.latLng.lat(); 
+            var lng = event.latLng.lng(); 
+            console.log(lat);
+            console.log(lng);
+            var requestString = newCity(lat,lng);
+            var userForecast = $.ajax(requestString);
+
+          // calls ajax
+          // loads above everyForecast(data);
+            var userForecast = $.ajax(gotCity);
+            console.log("second ajax working");
+
+        userForecast.done(function(data){
+            console.log(data + " is userForecast data");
+            everyForecast(data);
+            console.log("userForecast done reached");
+        });
+
+        userForecast.fail(function(){
+            console.log(" user ajax fail");
+        });
         }); 
     // });
     }
@@ -128,18 +144,6 @@
         console.log(" origin ajax fail");
     });
 
-    // var userForecast = $.ajax(gotCity);
-    // console.log("second ajax working");
-
-    // userForecast.done(function(data){
-    //     console.log(data + " is userForecast data");
-    //     everyForecast(data);
-    //     console.log("userForecast done reached");
-    // });
-
-    // userForecast.fail(function(){
-    //     console.log(" user ajax fail");
-    // });
 })();
 
 

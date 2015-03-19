@@ -1,4 +1,4 @@
-// console.log(data);
+        console.log(data);
 
         fString += '<div class="row">';
 
@@ -74,7 +74,7 @@
           var lat = event.latLng.lat(); 
           var lng = event.latLng.lng(); 
           console.log(lat);
-          console.log(lng);
+          console.log(lng);ß
           newCity(lat,lng);
         }); 
     });
