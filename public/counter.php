@@ -54,7 +54,7 @@ extract(pageController());
             }
             
     </style>
-        <title>PHP + HTML</title>   
+        <title>counter.php</title>   
     </head>
     <body>
         <div class="container">
