@@ -4,6 +4,7 @@ function pageController() {
     // Initialize an empty data array.
     $data = [];
 
+    require 'functions.php'; 
     // Add data to be used in the html view.
     // Checks value, if ball has ever been swung at.
     if (!isset($_GET['ball'])) {
