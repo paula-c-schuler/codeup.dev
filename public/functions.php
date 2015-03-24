@@ -10,16 +10,16 @@ function inputHas($key) {
 
 // if no key, return null, otherwise return its value
 function inputGet($key) {
-	if(!isset($_REQUEST[$key])) { 
+	if(!inputHas($key)) { 
 		return null;
 	} else {
-		return  $key[$value];
+		return  $_REQUEST[$key];
 	}	
 }
 
 // return a safely escaped string
 function escape($input) {
-	$input = htmlspecialchars(strip_tags('$input'));
+	$input = htmlspecialchars(strip_tags($input));
 	return $input;
 }
 

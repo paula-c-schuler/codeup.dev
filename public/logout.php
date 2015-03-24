@@ -20,6 +20,7 @@ function endSession () {
     header("Location: http://codeup.dev/login.php");
     exit();
 }
+endSession();
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,5 @@
 <?php
-
+// *** EXERCISE 7.2 COMPLETE - ADDED REQUIRE AND FUNCTIONS FROM FUNCTIONS.PHP FILE ***
 function pageController() {
     // Initialize an empty data array.
     $data = [];
