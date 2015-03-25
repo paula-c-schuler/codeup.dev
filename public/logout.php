@@ -1,5 +1,6 @@
-<!-- *** EXERCISE 7.1.4 COMPLETED SUCCESSFULLY -->
 <?php
+// <!-- *** EXERCISE 7.1.4 COMPLETED SUCCESSFULLY -->
+require_once "../Auth.php";
 //  Start the session or resume existing, helps $_SESSION get value
 session_start();
 

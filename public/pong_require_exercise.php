@@ -1,5 +1,9 @@
 <?php
 // *** EXERCISE 7.2 COMPLETE - ADDED REQUIRE AND FUNCTIONS FROM FUNCTIONS.PHP FILE ***
+// *** EXERCISE 7.3 STATIC inside CLASSES - COMPLETE ***
+
+require_once '../Input.php';
+
 function pageController() {
     // Initialize an empty data array.
     $data = [];
@@ -9,11 +13,11 @@ function pageController() {
 
     // Add data to be used in the html view.
     // Checks value, if ball has ever been swung at.
-    if (inputHasKey('ball')) {
+    if (Input::has('ball')) {
         $counter = '0';
         $message = "Hit the ball, if you can!";
     // Records the hit, sends a message, updates score.
-    } elseif (inputGet('ball')) == 'hit') {
+    } elseif (Input::get('ball') == 'hit') {
         $counter = $_GET['counter'];
         $message = "Hit!";
     // Records the miss, sends a message, zeroes the score.

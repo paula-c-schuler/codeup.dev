@@ -1,8 +1,12 @@
-<!-- EXERCISE 7.1.4 COMPLETED SUCCESSFULLY -->
-<!-- EXERCISE 7.2   - ADDING REQUIRE FILE WITH FUNCTIONS.PHP -->
+
 <?php
+// <!-- EXERCISE 7.1.4 COMPLETED SUCCESSFULLY -->
+// <!-- EXERCISE 7.2   - ADDING REQUIRE FILE WITH FUNCTIONS.PHP -->
+// <!-- EXERCISE 7.3.3 STATIC METHODS -->
 //  Start the session or resume existing, helps $_SESSION get value
 session_start();
+
+require_once '../Auth.php';
 
 //  use "require" to make more modular flexible code
 require 'functions.php';
@@ -12,15 +16,14 @@ require 'functions.php';
 
 $username = escape(inputGet('username'));
 // $username = isset($_POST['username']) ? $_POST['username'] : '';
-$password = isset($_POST['password']) ? $_POST['password'] : '';
-var_dump($username . " is username");
+$password = escape(inputGet('password'));
+// $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 $message = 'Please login.';
 
-if ($username == 'guest' && $password == 'password') {
+if (AUTH::ATTEMPT($username, $password)) {
     $_SESSION['logged_in_user'] = $username;
     header('Location: http://codeup.dev/authorized.php');
-    var_dump("Was sent to authorized");
 }
 
 if (isset($_SESSION['logged_in_user'])) 
