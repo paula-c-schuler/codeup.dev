@@ -6,13 +6,14 @@
 //  Start the session or resume existing, helps $_SESSION get value
 session_start();
 
+// Use Auth.php to develop authenticiation system. 
 require_once '../Auth.php';
 
-//  use "require" to make more modular flexible code
+// Use "require" to make more modular flexible code
 require 'functions.php';
 
 // NTS: Remember to use strings in the isset function. The variable is a string.
-// Next two lines are ternary functions
+// Next two (and two commented) lines are ternary functions
 
 $username = escape(inputGet('username'));
 // $username = isset($_POST['username']) ? $_POST['username'] : '';
@@ -21,20 +22,20 @@ $password = escape(inputGet('password'));
 
 $message = 'Please login.';
 
-if (AUTH::ATTEMPT($username, $password)) {
+if (Auth::attempt($username, $password)) 
+{
     $_SESSION['logged_in_user'] = $username;
     header('Location: http://codeup.dev/authorized.php');
 }
 
-if (isset($_SESSION['logged_in_user'])) 
-    if ($_SESSION['logged_in_user'] == 'guest') {
-        //assign session variable to $username
-        
-
-	   header('Location: http://codeup.dev/authorized.php');
-       var_dump("Was sent to authorized");
-
-} else if ($username != 'guest' || $password != 'password') {
+if (Auth::check())  
+{
+    //assign session variable to $username
+    Auth::user();     
+	header('Location: http://codeup.dev/authorized.php');
+} else if ($username != 'guest' || $password != 'password') 
+{
+    // general message for first load of page or login failed.
     $message = '';
     $message = ($username == '' && $password == '') ? "Please login." : "Login failed.";
 } 
