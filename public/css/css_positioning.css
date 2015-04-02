@@ -1,117 +1,37 @@
 /*EXERCISE 1.4.4 -  - BOX POSITIONING WITH FLOATS ETC ***/
 
-#banner {
-	width: auto;
-	padding: 0px;
-	margin-right: 300px;
-	margin-left: 300px;
-
-}
-
-p {
-	width: auto;
-	/*border: 1px blue dashed;*/
-	margin-top: 24px;
-	color: purple;
-	font-size: 35px;
-	font-weight: bold;
-	text-align: center;
-}
-/*
-* I do not understand why the margins must be different
-in order to line up the banner and the .container. 
-* I do not understand why I cannot get rid of the left and right
-*adding in the banner text. */
-
-.container{
-	width: 420px;
-	min-height: 300px;
-	padding: 0px;
-	border: 1px red solid;
+.container {
+	min-height: 1000px;
 	margin-top: 0px;
-	/*margin-right: auto;*/
-	margin-left: 330px;
-	
+	margin-right: auto;
+	margin-left: auto;
 
 }
 
-
-
-#top-row {
-	width: 300px;
-	height: 75px;
-	padding: 0px;
-	border: 0px;
-	margin: 0px;
-	position: relative;
-	overflow: visible;
+.big-box {
+	/*position: relative;*/
+	width: 72px;
+	height: 72px;
+	border: 1px solid green;
 }
 
 .box {
-	width: ;
-	height: ;
-	padding: ;
-	border: ;
-	margin: ;
-	position: relative;
-	float: left;
-	overflow: visible;
-}
-
-.box-colored {
-	height: 60px;
-	width: 60px;
-	padding: 0px;
-	border: 1px solid black;
-	margin: 24px;
-	float: left;
-	color: white;
-	position: relative;
-	overflow: visible;
-}
-
-table {
-	height: 50px;
-	width: 50px;
+	/*position: absolute;*/
+	border: black 1px solid;
+	width: 49px;
+	height: 49px;
+	/*padding: 10px;*/
+	/*margin-bottom: 0px;*/
+	/*margin-left: 0px;*/
 
 }
 
-tbody {
-	height: 50px;
-	width: 50px;
-	position: relative;
+.arrow { 
+	/*position: absolute;*/
+	/*margin-top: 0px;*/
+	/*margin-right: 0px;*/
 }
 
-/*.fluff {
-	display: hidden;
-	font-size: 5px;
-	color: #F5FA64;
-}*/
-.row1 {
-	width: 50px;
-	/*height: px;*/
-	padding: 0px;
-	border: 0px;
-	margin-right: 5px;
-	position: relative;
-	float: left;
-	font-weight: bold;
-	color: white;
-	font-size: 17px;
-	
-	
-}
-.row2 {
-	width: 65px;
-	padding: 0px;
-	border: 0px;
-	margin-right: 5px;
-	/*position: relative;*/
-	font-weight: bold;
-	color: white;
-	font-size: 17px;
-	
-}
 #red{
 	background-color: #D12F46;
 }
