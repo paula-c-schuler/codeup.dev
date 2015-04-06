@@ -9,8 +9,9 @@
 
 // define('DB_PASS','freefree');
 
-REQUIRE ('park_migrations_db_connect.php'); 
+REQUIRE ('parks_migration_db_connect.php'); 
 
+// echo connection status
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 
 $query = 'CREATE TABLE  (
