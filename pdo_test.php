@@ -6,7 +6,7 @@ define('DB_NAME','employees');
 
 define('DB_USER','codeup'); 
 
-define('DB_PASS','pcspcs');
+define('DB_PASS','codeup2015');
 
 REQUIRE ('db_connect.php'); 
 
