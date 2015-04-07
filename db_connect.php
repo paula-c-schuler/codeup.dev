@@ -1,6 +1,5 @@
 <?php  
-
-// $dbc = new PDO('mysql:host=127.0.0.1;dbname=employees', 'codeup', 'password');
+// EXERCISE 9.1.1 AND 9.1.2 Creating tables in SQL with PHP
 
 $dbc = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
 
