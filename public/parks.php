@@ -4,10 +4,8 @@ require '../parks_login.php';
 require '../db_connect.php';
 
 
-$stmt = $dbc->query('SELECT * FROM parks');
-
-echo "Columns: " . $stmt->columnCount() . PHP_EOL;
-echo "Rows: " . $stmt->rowCount() . PHP_EOL;
+// $stmt = $dbc->query('SELECT * FROM parks');
+$parksReturn = $dbc->query('SELECT * FROM parks')->fetchAll(PDO::FETCH_ASSOC);
  ?>
 <html>
 <head>
@@ -23,9 +21,14 @@ echo "Rows: " . $stmt->rowCount() . PHP_EOL;
 					<th>Area in Acres</th>
 				</tr>
 			</thead>
-
-
-
+				<tr>
+					<?php     
+					foreach ($parksReturn as $park) {
+						echo $park['location'];
+					} 
+					?>
+				</tr>
+			
 		</table>
 
 	</body>
