@@ -5,11 +5,23 @@ require '../db_connect.php';
 
 
 // $stmt = $dbc->query('SELECT * FROM parks');
-$parksReturn = $dbc->query('SELECT * FROM parks')->fetchAll(PDO::FETCH_ASSOC);
+$parksReturn = $dbc->query('SELECT * FROM parks LIMIT 4')->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
+
+
  ?>
 <html>
 <head>
+	
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<style type="text/css" src='/css/parks.css'></style>
+
 	<title>National Parks</title>
 </head>
 	<body>
@@ -31,7 +43,8 @@ $parksReturn = $dbc->query('SELECT * FROM parks')->fetchAll(PDO::FETCH_ASSOC);
 				</tr>
 			<?php endforeach; ?>
 		</table>
-
+		<button id="next">  >  </button>
+		<button id="back">  <  </button>
 	</body>
 </html>
 

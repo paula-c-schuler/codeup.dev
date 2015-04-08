@@ -1,4 +1,37 @@
-.column1 {
+body {
+	font-family: Verdana;
+	text-align: center;
+	margin: 300px;
+}
 
+table {
 	
+	
+	margin-top: auto;
+
+}
+.column1 {
+	width: 40px;
+	text-align: left;
+
+}
+
+.column2 {
+	width: 40px;
+	text-align: left;
+	
+}
+
+.column3 {
+	width: 40px;
+	text-align: left;
+}
+
+.column4 {
+	width: 40px;
+	text-align: right;
+}
+
+.th {
+	font-weight: bold;
 }
