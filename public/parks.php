@@ -48,9 +48,11 @@ $parksReturn = $dbc->query('SELECT * FROM parks LIMIT ' . $perPage . ' OFFSET ' 
 			<!-- <?php endforeach; ?> -->
 		</table>
 		<!-- <button><a href="http://codeup.dev/parks.php"></a> Page 1 </button> -->
-		<a id="next" href="http://codeup.dev/parks.php?perpage=4&page=2"> Next </a>
+WORKING ON THE NEXT THING
+		<a id="next" onclick="'page'++"> Next </a>
+
 		<a id="previous" href="http://codeup.dev/parks.php?perpage=4&page=2"> Previous </a>
-		
+		<script type="text/javascript"></script>
 	</body>
 </html>
 
