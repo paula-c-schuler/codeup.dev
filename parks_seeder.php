@@ -47,6 +47,9 @@ $parks =
 	'date_established' =>'1919-11-19', 'area_in_acres' => 146597.60]
 ];
 
+$stmt = $dbc->prepare('INSERT INTO parks (location, name, date_established, area_in_acres, description) 
+		VALUES (:location, :name, :date_established, :area_in_acres, :description)');
+
 foreach ($parks as $park) {
 	
     $query = "INSERT INTO parks (location, name, date_established, area_in_acres) 
@@ -58,3 +61,15 @@ foreach ($parks as $park) {
 }
 
  ?>
+
+
+
+
+
+
+
+
+
+
+
+
