@@ -1,4 +1,6 @@
 <?php 
+// EXERCISE 9.1.3 NOT COMPLETE Retrieving Data, User Side
+// EXERCISE 9.1.4 Prepared Statememts, Dynamic Queries and User Input
 
 require 'parks_login.php';
 require 'db_connect.php'; 

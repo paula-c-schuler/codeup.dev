@@ -1,4 +1,6 @@
 <?php 
+// EXERCISE 9.1.3 NOT COMPLETE Retrieving Data, User Side
+// EXERCISE 9.1.4 Prepared Statememts, Dynamic Queries and User Input
 
 require 'parks_login.php';
 require 'db_connect.php'; 
@@ -58,6 +60,16 @@ foreach ($parks as $park) {
     $dbc->exec($query);
 
     echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
+}
+
+foreach ($users as $user) {
+    $stmt->bindValue(':location',         $park['location'],         PDO::PARAM_STR);
+    $stmt->bindValue(':name',             $park['name'],             PDO::PARAM_STR);
+    $stmt->bindValue(':date_established', $park['date_established'], PDO::PARAM_STR);
+    $stmt->bindValue(':area_in_acres',    $park['area_in_acres'],    PDO::PARAM_STR);
+    $stmt->bindValue(':description',      $park['description'],      PDO::PARAM_STR);
+
+    $stmt->execute();
 }
 
  ?>
