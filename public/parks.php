@@ -3,18 +3,29 @@
 require '../parks_login.php';
 require '../db_connect.php';
 
-// get page
 $userPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 // define variable for how many allowed per page, up to limit of 10
 $perPage = isset($_GET['perPage']) ? (int)$_GET['perPage'] : 4;
+// var_dump($perPage);
 
 // offset variable created using variables defined above in ternery statement 
 $start = ($userPage > 1) ? ($userPage * $perPage) - $perPage : 0;
 
-// $stmt = $dbc->query('SELECT * FROM parks');
-$parksReturn = $dbc->query('SELECT * FROM parks LIMIT ' . $perPage . ' OFFSET ' . $start)->fetchAll(PDO::FETCH_ASSOC);
+$query = 'SELECT * FROM parks LIMIT :limit OFFSET :offset';
 
+$stmt = $dbc->prepare($query);
+$stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $start, PDO::PARAM_INT);
+$stmt->execute();
+
+// print_r($stmt->fetch(PDO::FETCH_ASSOC));
+
+$stmt = $dbc->prepare('INSERT INTO parks (location, name, date_established, area_in_acres, description) 
+		VALUES (:location, :name, :date_established, :area_in_acres, :description)');
+
+
+echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 
 
  ?>
@@ -36,19 +47,21 @@ $parksReturn = $dbc->query('SELECT * FROM parks LIMIT ' . $perPage . ' OFFSET ' 
 					<th class='column2' 'th'>Name</th>
 					<th class='column3' 'th'>Date Established</th>
 					<th class='column4' 'th'>Area in Acres</th>
+					<th class='column5' 'th'>Description</th>
 				</tr>
 			</thead>
 				<!-- <?php foreach ($parksReturn as $park): ?> -->
 				<tr>
-					<td class='column1' 'td'><?= $park['location']; ?></td>	
-					<td class='column2' 'td'><?= $park['name']; ?></td>
-					<td class='column3' 'td'><?= $park['date_established']; ?></td>
-					<td class='column4' 'td'><?= $park['area_in_acres']; ?></td>
+					<td class='column1' 'td'><?= $park[':location']; ?></td>	
+					<td class='column2' 'td'><?= $park[':name']; ?></td>
+					<td class='column3' 'td'><?= $park[':date_established']; ?></td>
+					<td class='column4' 'td'><?= $park[':area_in_acres']; ?></td>
+					<td class='column5' 'td'><?= $park[':description']; ?></td>
 				</tr>
 			<!-- <?php endforeach; ?> -->
 		</table>
 		<!-- <button><a href="http://codeup.dev/parks.php"></a> Page 1 </button> -->
-WORKING ON THE NEXT THING
+
 		<a id="next" onclick="'page'++"> Next </a>
 
 		<a id="previous" href="http://codeup.dev/parks.php?perpage=4&page=2"> Previous </a>

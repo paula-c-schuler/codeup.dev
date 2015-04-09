@@ -49,20 +49,13 @@ $parks =
 	'date_established' =>'1919-11-19', 'area_in_acres' => 146597.60]
 ];
 
-$stmt = $dbc->prepare('INSERT INTO parks (location, name, date_established, area_in_acres, description) 
-		VALUES (:location, :name, :date_established, :area_in_acres, :description)');
+
+// NOTE TO SELF: This statement inserts keys/columns into the array. 
+// with id auto-incrementing via function in migration file. 
+$stmt = $dbc->prepare('INSERT INTO parks (location, name, date_established, area_in_acres, description) VALUES (:location, :name, :date_established, :area_in_acres, :description)');
+
 
 foreach ($parks as $park) {
-	
-    $query = "INSERT INTO parks (location, name, date_established, area_in_acres) 
-    VALUES ('{$park['location']}', '{$park['name']}','{$park['date_established']}', '{$park['area_in_acres']}')";
-
-    $dbc->exec($query);
-
-    echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
-}
-
-foreach ($users as $user) {
     $stmt->bindValue(':location',         $park['location'],         PDO::PARAM_STR);
     $stmt->bindValue(':name',             $park['name'],             PDO::PARAM_STR);
     $stmt->bindValue(':date_established', $park['date_established'], PDO::PARAM_STR);
@@ -71,6 +64,7 @@ foreach ($users as $user) {
 
     $stmt->execute();
 }
+echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 
  ?>
 
