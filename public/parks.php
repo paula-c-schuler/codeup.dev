@@ -10,22 +10,26 @@ $perPage = isset($_GET['perPage']) ? (int)$_GET['perPage'] : 4;
 
 // determine next set of results based on current page
 $start = ($userPage > 1) ? ($userPage * $perPage) - $perPage : 0;
-$query = 'SELECT * FROM parks LIMIT :limit OFFSET :offset';
+$query = "SELECT * FROM parks LIMIT :limit OFFSET :offset";
 
 // prepare statement
-// bindValue added to ensure integer data type
+// bindValue added to ensure integer data type for limit and offset
 $stmt = $dbc->prepare($query);
 $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $start, PDO::PARAM_INT);
 $stmt->execute();
-print_r($stmt->fetch(PDO::FETCH_ASSOC));
+$parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$parks = [];
-$stmt = $dbc->prepare('INSERT INTO parks (location, name, 
-	date_established, area_in_acres, description) 
-	VALUES (:location, :name, :date_established, :area_in_acres, 
-	:description)');
-echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
+
+
+
+
+// Commenting this alive creates undefined variable for description in html
+// $query = 'INSERT INTO parks (location, name, date_established, area_in_acres) 
+// 		VALUES (:location, :name, :date_established, :area_in_acres)';
+// $stmt = $dbc->prepare($query);
+// echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
+
 
 
  ?>
@@ -47,18 +51,24 @@ echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 					<th class='column2' 'th'>Name</th>
 					<th class='column3' 'th'>Date Established</th>
 					<th class='column4' 'th'>Area in Acres</th>
-					<th class='column5' 'th'>Description</th>
+					<!-- <th class='column5' 'th'>Description</th> -->
 				</tr>
 			</thead>
-				<?php foreach ($parks as $park): ?>
-				<tr>
-					<td class='column1' 'td'><?= ':location'; ?></td>	
-					<td class='column2' 'td'><?= ':name'; ?></td>
-					<td class='column3' 'td'><?= $park[':date_established']; ?></td>
-					<td class='column4' 'td'><?= $park[':area_in_acres']; ?></td>
-					<td class='column5' 'td'><?= $park[':description']; ?></td>
-				</tr>
-				<?php endforeach; ?>
+				<tbody>
+					
+					
+					<?php foreach ($parks as $park): ?>
+					
+					<tr>
+						<td class='column1 td'><?php echo $park['location']; ?></td>	
+						<td class='column2 td'><?php echo $park['name']; ?></td>
+						<td class='column3 td'><?php echo $park['date_established']; ?></td>
+						<td class='column4 td'><?php echo $park['area_in_acres']; ?></td>
+						<!-- <td class='column5 td'><?php echo $park['description']; ?></td> -->
+						<?php endforeach; ?>
+					</tr> 
+
+				</tbody>
 		</table>
 		<!-- <button><a href="http://codeup.dev/parks.php"></a> Page 1 </button> -->
 
