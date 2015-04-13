@@ -1,5 +1,9 @@
 <?php 
 
+require_once 'model_pdo_test.php';
+
+
+
 class Model 
 {
 
@@ -24,7 +28,7 @@ class Model
         if (!self::$dbc)
         {
             // @TODO: Connect to database
-            self::$dbc = new PDO('mysql:host=127.0.0.1;dbname=model_db', 'codeup', 'codeup2015');
+            self::$dbc = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
             self::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo self::$dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
             echo "good connection" . "\n";
@@ -66,41 +70,63 @@ class Model
     //     // @TODO: Use prepared statements to ensure data security
     // }
 
-    // /*
-    //  * Find a record based on an id
-    //  */
-    // public static function find($id)
-    // {
-    //     // Get connection to the database
-    //     self::dbConnect();
+    /*
+     * Find a record based on an id
+     */
+    public static function find($id)
+    {
+        // Get connection to the database
+        self::dbConnect();
 
-    //     // @TODO: Create select statement using prepared statements
+        // @TODO: Create select statement using prepared statements
+        $query = 'SELECT * FROM happy_thoughts WHERE id = :id';
+        // its taking the place of a variable and then we resolve the value down here
+        $stmt = self::$dbc->prepare($query);
+        $stmt->execute(array(':id' => $id));
+        
+        // @TODO: Store the resultset in a variable named $result
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    //     // @TODO: Store the resultset in a variable named $result
+        // The following code will set the attributes on the calling object based on the result variable's contents
+        $instance = null;
+        if ($result)
+        {
+            $instance = new static;
+            $instance->attributes = $result;
+        }
+        return $instance;
+    }
 
-    //     // The following code will set the attributes on the calling object based on the result variable's contents
 
-    //     $instance = null;
-    //     if ($result)
-    //     {
-    //         $instance = new static;
-    //         $instance->attributes = $result;
-    //     }
-    //     return $instance;
-    // }
 
-    // /*
-    //  * Find all records in a table
-    //  */
-    // public static function all()
-    // {
-    //     self::dbConnect();
+    /*
+     * Find all records in a table
+     */
+    public static function all()
+    {
+        self::dbConnect();
 
-    //     // @TODO: Learning from the previous method, return all the matching records
-    // }
+        // @TODO: Learning from the previous method, return all the matching records
+        $result = self::$dbc->query('SELECT * FROM happy_thoughts')->fetchAll(PDO::FETCH_ASSOC);
+        
+        $instance = null;
+        if ($result)
+        {
+            $instance = new static;
+            $instance->attributes = $result;
+        }
+        return $instance;
+    }
+
 
 }
 
 $model = new Model();
+// NTS: static function requires :: 
+Model::find('1');
+Model::all();
+$all = Model::all();
+var_dump($all);
+
 
 ?>
