@@ -1,8 +1,7 @@
 <?php 
-// EXERCISE 9.2.4 complete 
-// EXERCISE 9.2.5      Late Static Binding
 
-class Model {
+class Model 
+{
 
     protected static $dbc;
     protected static $table;
@@ -25,79 +24,83 @@ class Model {
         if (!self::$dbc)
         {
             // @TODO: Connect to database
+            self::$dbc = new PDO('mysql:host=127.0.0.1;dbname=model_db', 'codeup', 'codeup2015');
+            self::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo self::$dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
+            echo "good connection" . "\n";
+            
         }
     }
 
-    /*
-     * Get a value from attributes based on name
-     */
-    public function __get($name)
-    {
-        // @TODO: Return the value from attributes with a matching $name, if it exists
-    }
+    // /*
+    //  * Get a value from attributes based on name
+    //  */
+    // public function __get($name)
+    // {
+    //     // @TODO: Return the value from attributes with a matching $name, if it exists
+    // }
 
-    /*
-     * Set a new attribute for the object
-     */
-    public function __set($name, $value)
-    {
-        // @TODO: Store name/value pair in attributes array
-    }
+    // /*
+    //  * Set a new attribute for the object
+    //  */
+    // public function __set($name, $value)
+    // {
+    //     // @TODO: Store name/value pair in attributes array
+    // }
 
-    /*
-     * Persist the object to the database
-     */
-    public function save()
-    {
-        // @TODO: Ensure there are attributes before attempting to save
+    // /*
+    //  * Persist the object to the database
+    //  */
+    // public function save()
+    // {
+    //     // @TODO: Ensure there are attributes before attempting to save
 
-        // @TODO: Perform the proper action - if the `id` is set, this is an update, if not it is a insert
+    //     // @TODO: Perform the proper action - if the `id` is set, this is an update, if not it is a insert
 
-        // @TODO: Ensure that update is properly handled with the id key
+    //     // @TODO: Ensure that update is properly handled with the id key
 
-        // @TODO: After insert, add the id back to the attributes array so the object can properly reflect the id
+    //     // @TODO: After insert, add the id back to the attributes array so the object can properly reflect the id
 
-        // @TODO: You will need to iterate through all the attributes to build the prepared query
+    //     // @TODO: You will need to iterate through all the attributes to build the prepared query
 
-        // @TODO: Use prepared statements to ensure data security
+    //     // @TODO: Use prepared statements to ensure data security
+    // }
 
-    /*
-     * Find a record based on an id
-     */
-    public static function find($id)
-    {
-        // Get connection to the database
-        self::dbConnect();
+    // /*
+    //  * Find a record based on an id
+    //  */
+    // public static function find($id)
+    // {
+    //     // Get connection to the database
+    //     self::dbConnect();
 
-        // @TODO: Create select statement using prepared statements
+    //     // @TODO: Create select statement using prepared statements
 
-        // @TODO: Store the resultset in a variable named $result
+    //     // @TODO: Store the resultset in a variable named $result
 
-        // The following code will set the attributes on the calling object based on the result variable's contents
+    //     // The following code will set the attributes on the calling object based on the result variable's contents
 
-        $instance = null;
-        if ($result)
-        {
-            $instance = new static;
-            $instance->attributes = $result;
-        }
-        return $instance;
-    }
+    //     $instance = null;
+    //     if ($result)
+    //     {
+    //         $instance = new static;
+    //         $instance->attributes = $result;
+    //     }
+    //     return $instance;
+    // }
 
-    /*
-     * Find all records in a table
-     */
-    public static function all()
-    {
-        self::dbConnect();
+    // /*
+    //  * Find all records in a table
+    //  */
+    // public static function all()
+    // {
+    //     self::dbConnect();
 
-        // @TODO: Learning from the previous method, return all the matching records
-    }
+    //     // @TODO: Learning from the previous method, return all the matching records
+    // }
 
 }
 
+$model = new Model();
 
-
-
-
-
+?>

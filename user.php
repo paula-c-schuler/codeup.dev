@@ -1,5 +1,5 @@
 <?php  
-// EXERCISE 9.2.5     Late Static Binding
+// EXERCISE 9.2.6       Build a Model
 
 
 
