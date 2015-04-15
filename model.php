@@ -2,13 +2,12 @@
 
 require_once 'model_pdo_test.php';
 
-
 class Model 
 {
 
     protected static $dbc;
     protected static $table;
-    // "the setter is tied into the attributes array"
+    // "the setter should be tied into the attributes array"
     // QQQQQQQQQQQQQQQQQQQQ
     // Meaning --- we are connecting to the database, BUT this is mainly written with the users table in mind? 
     public $attributes = array();
@@ -61,8 +60,6 @@ class Model
 
 
 
-
-
     /*
      * Persist the object to the database
      "Save is a thin veneer, decides if it needs to update or insert," Ben said.
@@ -72,13 +69,15 @@ class Model
     public function save()
     {
         // @TODO: Perform the proper action - if the `id` is set, this is an update, if not it is a insert
-        if(isset($this->id)){
+        if(isset($this->attributes['id'])){
             return $this->update();
             
         } else {
             return $this->insert();
         }
     }
+
+
 
     // @TODO: Ensure there are attributes(unique identifiers, keys, etc) before attempting to save
     // This means communicate with user if they need to enter valid data, to ensure there are attributes
@@ -110,41 +109,44 @@ class Model
     // }
             
 
+    // @TODO: Ensure that update is properly handled with the id key
+    // This means to make sure to assign the ID and return the last ID created in DB.
+    protected function update()
+        {
+            // prepare our update[]
+            $query = "UPDATE users SET name = :name, email = :email WHERE id = :id";
+            $stmt = self::$dbc->prepare($query);
 
-     // protected function update()
-        // {
-        //     // prepare our update
-        //     // bind
-        //     // execute
-        // }
+            // bind
+            $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
+            $stmt->bindValue(':name',  $this->attributes['name'],  PDO::PARAM_STR);
+            
+            // execute
+            $stmt->execute();
+            echo "This update ran."
+
+        }
     
     protected function insert()
         {
 
             $query = 'INSERT INTO users (email, name) VALUES (:email, :name)';
- 
-
-            // // prepare
+        // prepare
             $stmt = self::$dbc->prepare($query);
             
-            // bind
-            $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
-            $stmt->bindValue(':name',  $user['name'],  PDO::PARAM_STR);
+        // bind
+        // to get accurate variable $user, must look at get and set for what to write here
+            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':name',  $this->name,  PDO::PARAM_STR);
+            $stmt->execute();
 
-            // $stmt->execute();
-
-            // // @TODO: Ensure that update is properly handled with the id key
-            // // This means to make sure to assign the ID and return the last ID created in DB. 
-            $this->id = $this->dbc->lastInsertId();
-
-            return $this->id;
-        
-        }
-
-
-
+             
         // @TODO: After insert, add the id back to the attributes array so the object can properly reflect the id
         // This means to call the last inserted line and return the value of that call
+            echo "The inserted ID: " . self::$dbc->lastInsertId() . PHP_EOL;
+            return $this->id;
+        }
 
         // @TODO: You will need to iterate through all the attributes to build the prepared query
         // BEN SAID IT IS A BAD IDEA 
@@ -202,33 +204,5 @@ class Model
 
 
 }
-
-$model = new Model();
-
-// IF ONE ADDS THIS WAY TO THE MODEL CLASS, THEN WHERE DOES THE DATA GO? WHICH TABLE? 
-// set
-$model->name = 'Paula';
-$model->email = 'abc@abc.com';
-
-// get
-echo $model->email . PHP_EOL;
-
-// save
-// var_dump($users);
-
-// find
-Model::find('1');
-
-// all
-// Model::all();
-$all = Model::all();
-// var_dump($all);
-
-
-
-
-
-
-
 
 ?>
