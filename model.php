@@ -2,12 +2,6 @@
 
 require_once 'model_pdo_test.php';
 
-$users = [
-    ['email' => 'jason@codeup.com',   'name' => 'Jason Straughan'],
-    ['email' => 'chris@codeup.com',   'name' => 'Chris Turner'],
-    ['email' => 'michael@codeup.com', 'name' => 'Michael Girdley']
-];
-
 
 class Model 
 {
@@ -128,25 +122,22 @@ class Model
         {
 
             $query = 'INSERT INTO users (email, name) VALUES (:email, :name)';
-NEED TO TEST ONE LINE AT A TIME 
+ 
 
             // // prepare
-            // $stmt = self::$dbc->prepare($query);
+            $stmt = self::$dbc->prepare($query);
             
-            // // bind
-            // $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
-            // $stmt->bindValue(':name',  $user['name'],  PDO::PARAM_STR);
+            // bind
+            $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
+            $stmt->bindValue(':name',  $user['name'],  PDO::PARAM_STR);
 
             // $stmt->execute();
 
             // // @TODO: Ensure that update is properly handled with the id key
             // // This means to make sure to assign the ID and return the last ID created in DB. 
-            // $this->id = $this->dbc->lastInsertId();
+            $this->id = $this->dbc->lastInsertId();
 
-            // return $this->id;
-
-                
-              
+            return $this->id;
         
         }
 

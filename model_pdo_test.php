@@ -13,4 +13,5 @@ REQUIRE ('db_connect.php');
 // echo connection status
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 
+
  ?>
