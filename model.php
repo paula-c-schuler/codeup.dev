@@ -15,6 +15,8 @@ class Model
     protected static $dbc;
     protected static $table;
     // "the setter is tied into the attributes array"
+    // QQQQQQQQQQQQQQQQQQQQ
+    // Meaning --- we are connecting to the database, BUT this is mainly written with the users table in mind? 
     public $attributes = array();
 
     /*
@@ -69,9 +71,9 @@ class Model
 
     /*
      * Persist the object to the database
-     "Save is a thin veneer, decides if it needs to update or insert." 
-     "In insert and update, you have to be very careful about what you are assigning."
-     "I feel SQL code should be in the child files, not model." Ben
+     "Save is a thin veneer, decides if it needs to update or insert," Ben said.
+     "In insert and update, you have to be very careful about what you are assigning,"  Ben said.
+     "I feel SQL code should be in the child files, not model," Ben said.
      */
     public function save()
     {
@@ -125,22 +127,25 @@ class Model
     protected function insert()
         {
 
-            $query = 'INSERT INTO users (id) VALUES (:id)';
+            $query = 'INSERT INTO users (email, name) VALUES (:email, :name)';
+NEED TO TEST ONE LINE AT A TIME 
 
-            // prepare
-            $stmt = self::$dbc->prepare($query);
+            // // prepare
+            // $stmt = self::$dbc->prepare($query);
             
-            // bind
-            
+            // // bind
+            // $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
+            // $stmt->bindValue(':name',  $user['name'],  PDO::PARAM_STR);
 
+            // $stmt->execute();
 
-            
-            
-                // @TODO: Ensure that update is properly handled with the id key
-                $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
-                $stmt->bindValue(':name',  $user['name'],  PDO::PARAM_STR);
+            // // @TODO: Ensure that update is properly handled with the id key
+            // // This means to make sure to assign the ID and return the last ID created in DB. 
+            // $this->id = $this->dbc->lastInsertId();
 
-                $stmt->execute();
+            // return $this->id;
+
+                
               
         
         }
