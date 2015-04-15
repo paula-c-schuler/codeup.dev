@@ -79,7 +79,7 @@ class Model
 
 
 
-    // @TODO: Ensure there are attributes(unique identifiers, keys, etc) before attempting to save
+    // @TODO: Ensure there are attributes before attempting to save
     // This means communicate with user if they need to enter valid data, to ensure there are attributes
     // QQQQQQQQQQ 
     // I am confused as to where the timing of this function goes 
@@ -124,7 +124,8 @@ class Model
             
             // execute
             $stmt->execute();
-            echo "This update ran."
+            echo "This update ran." . PHP_EOL;
+            var_dump($stmt);
 
         }
     
