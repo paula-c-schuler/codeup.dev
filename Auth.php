@@ -29,6 +29,7 @@ class Auth
 			}
 		}
 	}
+	
 // Auth::check() check if user is logged in or not
 	public static function check() 
 	{
@@ -67,14 +68,4 @@ class Auth
 	}
 
 }
- 
-	
-
-
-
-
-
-
-
-// }
 ?>

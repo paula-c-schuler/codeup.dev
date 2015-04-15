@@ -2,6 +2,12 @@
 
 require_once 'model_pdo_test.php';
 
+$users = [
+    ['email' => 'jason@codeup.com',   'name' => 'Jason Straughan'],
+    ['email' => 'chris@codeup.com',   'name' => 'Chris Turner'],
+    ['email' => 'michael@codeup.com', 'name' => 'Michael Girdley']
+];
+
 
 class Model 
 {
@@ -57,58 +63,83 @@ class Model
         $this->attributes[$name] = $value;
     }
 
-    // /*
-    //  * Persist the object to the database
-    //  */
-    // public function save()
-    // {
-        //     // Ben suggested, Ryan explained:
-        //     // Perform a query to see if a record with the same name exists
-        // if(empty($this->attributes['name'])){
-        //     // if attributes array does not have 'name', then it calls an insert function
-        // $this->insert();
-        // } else {
-        //     $this->update();
-        // }
-        // }
-        // protected function insert()
-        // {
-        //     $query = 'INSERT INTO users columnName VALUES (:)'
-        //     // prepare
-        //     // bind
-        //     // execute
-        // }
 
-        // protected function update()
+
+
+
+    /*
+     * Persist the object to the database
+     "Save is a thin veneer, decides if it needs to update or insert." 
+     "In insert and update, you have to be very careful about what you are assigning."
+     "I feel SQL code should be in the child files, not model." Ben
+     */
+    public function save()
+    {
+        // @TODO: Perform the proper action - if the `id` is set, this is an update, if not it is a insert
+        if(isset($this->id)){
+            return $this->update();
+            
+        } else {
+            return $this->insert();
+        }
+    }
+
+        // @TODO: Ensure there are attributes(unique identifiers, keys, etc) before attempting to save
+        // This means communicate with user if they need to enter valid data, to ensure there are attributes
+        protected function validData()
+
+
+     // protected function update()
         // {
         //     // prepare our update
         //     // bind
         //     // execute
         // }
+    
+    protected function insert()
+        {
 
-    //     // @TODO: Ensure there are attributes before attempting to save
+            $query = 'INSERT INTO users (id) VALUES (:id)';
 
-    //     // @TODO: Perform the proper action - if the `id` is set, this is an update, if not it is a insert
+            // prepare
+            $stmt = self::$dbc->prepare($query);
+            
+            // bind
+            
 
-    //     // @TODO: Ensure that update is properly handled with the id key
 
-    //     // @TODO: After insert, add the id back to the attributes array so the object can properly reflect the id
+            
+            
+                // @TODO: Ensure that update is properly handled with the id key
+                $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
+                $stmt->bindValue(':name',  $user['name'],  PDO::PARAM_STR);
 
-    //     // @TODO: You will need to iterate through all the attributes to build the prepared query
+                $stmt->execute();
+              
+        
+        }
 
-    //     // @TODO: Use prepared statements to ensure data security
-    // }
+
+
+        // @TODO: After insert, add the id back to the attributes array so the object can properly reflect the id
+        // This means to call the last inserted line and return the value of that call
+
+        // @TODO: You will need to iterate through all the attributes to build the prepared query
+        // BEN SAID IT IS A BAD IDEA 
+
+        
 
     /*
      * Find a record based on an id
      */
+
     public static function find($id)
     {
         // Get connection to the database
         self::dbConnect();
 
         // @TODO: Create select statement using prepared statements
-        $query = 'SELECT * FROM happy_thoughts WHERE id = :id';
+        $query = 'SELECT * FROM parks WHERE id = :id';
         // its taking the place of a variable and then we resolve the value down here
         $stmt = self::$dbc->prepare($query);
         $stmt->execute(array(':id' => $id));
@@ -136,7 +167,7 @@ class Model
         self::dbConnect();
 
         // @TODO: Learning from the previous method, return all the matching records
-        $result = self::$dbc->query('SELECT * FROM happy_thoughts')->fetchAll(PDO::FETCH_ASSOC);
+        $result = self::$dbc->query('SELECT * FROM parks')->fetchAll(PDO::FETCH_ASSOC);
         
         $instance = null;
         if ($result)
@@ -152,22 +183,23 @@ class Model
 
 $model = new Model();
 
-
+// IF ONE ADDS THIS WAY TO THE MODEL CLASS, THEN WHERE DOES THE DATA GO? WHICH TABLE? 
 // set
-$model->firstName = 'Paula';
-$model->lastName = 'Schuler';
+$model->name = 'Paula';
 $model->email = 'abc@abc.com';
-
 
 // get
 echo $model->email . PHP_EOL;
-// var_dump($model);
 
+// save
+// var_dump($users);
 
-// NTS: static function requires :: 
-// Model::find('1');
+// find
+Model::find('1');
+
+// all
 // Model::all();
-// $all = Model::all();
+$all = Model::all();
 // var_dump($all);
 
 

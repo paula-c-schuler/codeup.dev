@@ -2,11 +2,11 @@
 
 define('DB_HOST','127.0.0.1');
 
-define('DB_NAME','model_db');
+define('DB_NAME','parks_db');
 
-define('DB_USER','codeup'); 
+define('DB_USER','parks_user'); 
 
-define('DB_PASS','codeup2015');
+define('DB_PASS','freefree');
 
 REQUIRE ('db_connect.php'); 
 
