@@ -84,9 +84,35 @@ class Model
         }
     }
 
-        // @TODO: Ensure there are attributes(unique identifiers, keys, etc) before attempting to save
-        // This means communicate with user if they need to enter valid data, to ensure there are attributes
-        protected function validData()
+    // @TODO: Ensure there are attributes(unique identifiers, keys, etc) before attempting to save
+    // This means communicate with user if they need to enter valid data, to ensure there are attributes
+    // QQQQQQQQQQ 
+    // I am confused as to where the timing of this function goes 
+    //      since it is suggested we update() or insert() right away in save().
+    // This has not been tested.  
+    // protected function ensureData($value, $name, $maxLength)
+    // {
+    //     if(empty($value))
+    //     {
+    //         throw new Exception('Invalid. We need your name, please.');
+    //     } elseif (strlen($value) > $maxLength)
+    //     {
+    //         throw new Exception('You have only 50 characters available for your name. Please adjust.');
+    //     } else 
+    //         function test_input($value) 
+    //         {
+    //         $value = trim($value);
+    //         $value = stripslashes($value);
+    //         $value = htmlspecialchars($value);
+    //         return $this->value;
+    //         echo 'Input is good.' . PHP_EOL;
+    //         $inputValid = $this->value;
+    //         }
+    //     {
+    //     return = $this->value;
+    //     }
+    // }
+            
 
 
      // protected function update()

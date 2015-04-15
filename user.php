@@ -5,7 +5,11 @@
 
 require_once 'Model.php'; 
 
+// max length of user input string
+$maxLength = '50';
+
 class User extends Model {
+
 
     protected static $table = 'contacts';
 
