@@ -1,6 +1,6 @@
 <?php
 // *** EXERCISE 7.3.3 COMPLETED -- STATIC inside CLASSES ***
-class Input
+class ParksInput
 {
     /**
      * Check if a given value was passed in the request
@@ -26,43 +26,41 @@ class Input
      */
     public static function get($key, $default = null)
     {
-        if (isset($_REQUEST[$key])) {
-            return ($_REQUEST[$key]);
-        } else {
-        return $default;
-        }
+        return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $default;
     }
 // EXERCISE TODAY 9.2.1
     public static function getString($key)
     {
         if ($_REQUEST[$key]) 
         {
-           $input = $_REQUEST[$key];
-           if (empty($input))
+           $keyValue = $_REQUEST[$key];
+           if (empty($keyValue)) 
            {
-                throw new Exception ('Please enter data');
+                throw new Exception ('Please enter better data.');
+           } elseif (!is_string($keyValue))
+            {
+                throw new Exception ('Please enter better data.');
+            } elseif 
+                (is_numeric($keyValue))
+           {
+                throw new Exception ('Please do not use numbers for this field entry.');
            }
-           // throw new Exception ('Please enter data');
-        }       
-
-            // throw new Exception ('Please enter data');
-            
-        // } elseif (!is_string($_POST[$key])) 
-        // {
-        //     throw new Exception ('Please enter data');
-        // } 
+           return $keyValue;
+        }        
     }
+    
 
 
     public static function getNumber($key)
     {
-        if(empty($_POST[$key]))
+        if(empty($keyValue))
         {
             throw new Exception ('Please enter numerical information.');
-        } elseif (!is_string($_POST[$key]))
+        } elseif (!is_numeric($keyValue))
         {
             throw new Exception ('Numbers required for this information field.');
         }
+        return trim($keyValue);
     }
 
     ///////////////////////////////////////////////////////////////////////////

@@ -9,7 +9,7 @@ $maxLength = '50';
 class User extends Model {
 
 
-    protected static $table = 'contacts';
+    protected static $table = 'users';
 
 }
 

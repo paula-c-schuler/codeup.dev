@@ -7,9 +7,7 @@ class Model
 
     protected static $dbc;
     protected static $table;
-    // "the setter should be tied into the attributes array"
-    // QQQQQQQQQQQQQQQQQQQQ
-    // Meaning --- we are connecting to the database, BUT this is mainly written with the users table in mind? 
+// $attributes array serves as a placeholder for tables
     public $attributes = array();
 
     /*
@@ -78,12 +76,10 @@ class Model
     }
 
 
-
+// Will test this method after I have created an effective form on the parks project. 
+    
     // @TODO: Ensure there are attributes before attempting to save
     // This means communicate with user if they need to enter valid data, to ensure there are attributes
-    // QQQQQQQQQQ 
-    // I am confused as to where the timing of this function goes 
-    //      since it is suggested we update() or insert() right away in save().
     // This has not been tested.  
     // protected function ensureData($value, $name, $maxLength)
     // {
@@ -114,7 +110,7 @@ class Model
     protected function update()
         {
             // prepare our update[]
-            $query = "UPDATE users SET name = :name, email = :email WHERE id = :id";
+            $query = "UPDATE ::table SET name = :name, email = :email WHERE id = :id";
             $stmt = self::$dbc->prepare($query);
 
             // bind
@@ -132,7 +128,7 @@ class Model
     protected function insert()
         {
 
-            $query = 'INSERT INTO users (email, name) VALUES (:email, :name)';
+            $query = 'INSERT INTO ::table (email, name) VALUES (:email, :name)';
         // prepare
             $stmt = self::$dbc->prepare($query);
             
@@ -164,13 +160,11 @@ class Model
         self::dbConnect();
 
         // @TODO: Create select statement using prepared statements
-        $query = 'SELECT * FROM parks WHERE id = :id';
+        $query = 'SELECT * FROM ::table WHERE id = :id';
         // its taking the place of a variable and then we resolve the value down here
-        $stmt = self::$dbc->prepare($query);
-        $stmt->execute(array(':id' => $id));
-        
         // @TODO: Store the resultset in a variable named $result
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = self::$dbc->prepare($query);
+        $result->execute(array(':id' => $id))->fetchAll(PDO::FETCH_ASSOC);
 
         // The following code will set the attributes on the calling object based on the result variable's contents
         $instance = null;

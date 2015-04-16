@@ -1,6 +1,22 @@
 <?php  
+// EXERCISE 9.
+
+define('DB_HOST','127.0.0.1');
+define('DB_NAME','parks_db');
+define('DB_USER','parks_user'); 
+define('DB_PASS','freefree');
+
 require '../parks_login.php';
-require '../db_connect.php';
+require '../parks_migration_db_connect.php';
+require '../ParksInput.php';
+
+$errors = [];
+
+
+
+
+
+
 
 // get current page
 $userPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -19,9 +35,6 @@ $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $start, PDO::PARAM_INT);
 $stmt->execute();
 $parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
 
 
 // Commenting this alive creates undefined variable for description in html
@@ -44,6 +57,7 @@ $parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	<title>National Parks</title>
 </head>
 	<body>
+<!-- Table that displays listed national parks -->
 		<table>
 			<thead>
 				<tr>
@@ -60,16 +74,48 @@ $parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					<?php foreach ($parks as $park): ?>
 					
 					<tr>
-						<td class='column1 td'><?php echo $park['location']; ?></td>	
 						<td class='column2 td'><?php echo $park['name']; ?></td>
+						<td class='column1 td'><?php echo $park['location']; ?></td>
 						<td class='column3 td'><?php echo $park['date_established']; ?></td>
 						<td class='column4 td'><?php echo $park['area_in_acres']; ?></td>
 						<!-- <td class='column5 td'><?php echo $park['description']; ?></td> -->
+
 						<?php endforeach; ?>
 					</tr> 
 
 				</tbody>
 		</table>
+
+
+		<h3>If your favorite national park is not listed, add it here.</h3>
+
+
+		<form method="POST"> 
+	   		<p>
+	        <label for="name">Name</label>
+	        <input id="name" name="name" type="text">
+	    	</p>
+	    	<p>
+	        <label for="location">Location</label>
+	        <input id="location" name="location" type="text">
+	    	</p>
+	    	<p>
+	        <label for="date_established">Established</label>
+	        <input id="date_established" name="date-established" type="text">
+	    	</p>
+	    	<p>
+	        <label for="area_in_acres">Area in Acres</label>
+	        <input id="area_in_acres" name="area_in_acres" type="text">
+	    	</p>
+
+	    	<!-- <p>
+	        <label for="description">Description</label>
+	        <input id="description" name="description" type="text">
+	    	</p> -->
+	    	<p>
+	        <input type="submit">
+	    	</p>
+		</form>
 		<!-- <button><a href="http://codeup.dev/parks.php"></a> Page 1 </button> -->
 
 		<a id="next" onclick="'page'++"> Next </a>
