@@ -31,25 +31,15 @@ class ParksInput
 // EXERCISE TODAY 9.2.1
     public static function getString($key)
     {
-        if ($_REQUEST[$key]) 
-        {
-           $keyValue = $_REQUEST[$key];
-           if (empty($keyValue)) 
-           {
-                throw new Exception ('Please enter better data.');
-           } elseif (!is_string($keyValue))
-            {
-                throw new Exception ('Please enter better data.');
-            } elseif 
-                (is_numeric($keyValue))
-           {
-                throw new Exception ('Please do not use numbers for this field entry.');
-           }
-           return $keyValue;
-        }        
+        echo "In getString";
+        $keyValue = static::get($key);
+        if  (!is_string($keyValue)){
+            throw new Exception ('Please enter better data.');
+        } else {
+            return $keyValue;
+        }       
     }
     
-
 
     public static function getNumber($key)
     {

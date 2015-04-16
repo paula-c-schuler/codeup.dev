@@ -1,32 +1,92 @@
 <?php  
-// EXERCISE 9.
-*************************************** CONNECTION CHALLENGES, DID THIS WORK WITHOUT TESTING *********
+// EXERCISE 
+// *************************************** CONNECTION CHALLENGES, DID THIS WORK WITHOUT TESTING *********
 // improved userPage variable 
 // added pagination code math pagination, echos the numerical links below
 // added errors array
 // added description column to table in SQL
 // added back description portions of HTML on this file
-******************************************************************************************************
-define('DB_HOST','127.0.0.1');
-define('DB_NAME','parks_db');
-define('DB_USER','parks_user'); 
-define('DB_PASS','freefree');
+// ******************************************************************************************************
+// added if statement for user post
+
+
+
 
 require '../parks_login.php';
 require '../parks_migration_db_connect.php';
 require '../ParksInput.php';
 
 $errors = [];
+$features = [];
+
+// Try/Catch allows us to try a block of code and catch exceptions that may occur while that code is being executed. 
+// This allows our code to continue runing and does not burden user with confusing error messages. 
+// try {
+// 	// check if value is string
+// 	if (!is_string('name'))
+
+// }
+
+
+// No POST? This won't run, no worries.
+if (!empty($_POST)) {
+	
+	try {
+		$features['name'] = ParksInput::getString('name');
+	} catch (Exception $e) {
+		$errors[] = $e->getMessage();
+	}
+
+	try {
+		$features['location'] = ParksInput::getString('location');
+	} catch (Exception $e) {
+		$errors[] = $e->getMessage();
+	}
+
+	try {
+		$features['date_established'] = ParksInput::getString('date_established');
+	} catch (Exception $e) {
+		$errors[] = $e->getMessage();
+	}
+
+	try {
+		$features['area_in_acres'] = ParksInput::getString('area_in_acres');
+	} catch (Exception $e) {
+		$errors[] = $e->getMessage();
+	}
+
+	try {
+		$features['description'] = ParksInput::getString('description');
+	} catch (Exception $e) {
+		$errors[] = $e->getMessage();
+	}
+
+	if (!empty($errors)){
+
+	$query = 'INSERT INTO parks (name, location, date_established, area_in_acres, description) 
+			VALUES (:name, :location, :date_established, :area_in_acres, :description)';
+var_dump($features);
+	$stmt = $dbc->prepare($query);
+	$stmt->bindValue(':name', $features['name'], PDO::PARAM_STR);
+	$stmt->bindValue(':location', $features['location'], PDO::PARAM_STR);
+	$stmt->bindValue(':date_established', $features['date_established'], PDO::PARAM_STR);
+	$stmt->bindValue(':area_in_acres', $features['area_in_acres'], PDO::PARAM_STR);
+	$stmt->bindValue(':description', $features['description'], PDO::PARAM_STR);
+	$stmt->execute(); 
+
+	echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
+	}
+}
 
 
 
 
 
+// ---------------------------------FORM INPUT PROCESSING ends here
 
 // ---------------------------------PAGINATION begins here
 // get current page user sees
-if (!empty($_GET['page']))
-{
+if (!empty($_GET['page'])) {
 	$userPage = $_GET['page'];
 } else {
 	$userPage = 1;
@@ -47,22 +107,19 @@ $stmt = $dbc->prepare($query);
 $stmt->bindValue(':limit', $limitPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $start, PDO::PARAM_INT);
 $stmt->execute();
-$parksResultsPerPage = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $total_parks = $dbc->query('SELECT count(*) FROM parks')->fetchColumn();
 
 $totalPages = ceil($total_parks/$limitPerPage);
 
 // ----------------------------------PAGINATION ends here
 
-// Commenting this alive creates undefined variable for description in html
-$query = 'INSERT INTO parks (location, name, date_established, area_in_acres, description) 
-		VALUES (:location, :name, :date_established, :area_in_acres, :description)';
-$stmt = $dbc->prepare($query);
-echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
+var_dump($_POST);
 
 
 
- ?>
+?> 
+
 <html>
 <head>
 	
@@ -74,15 +131,14 @@ echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 	<title>National Parks</title>
 </head>
 	<body>
-<!-- Table that displays listed national parks -->
 		<table>
 			<thead>
 				<tr>
-					<th class='column1' 'th'>Location</th>
 					<th class='column2' 'th'>Name</th>
+					<th class='column1' 'th'>Location</th>
 					<th class='column3' 'th'>Date Established</th>
 					<th class='column4' 'th'>Area in Acres</th>
-					<!-- <th class='column5' 'th'>Description</th> -->
+					<th class='column5' 'th'>Description</th>
 				</tr>
 			</thead>
 				<tbody>
@@ -91,14 +147,14 @@ echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 					<?php foreach ($parks as $park): ?>
 					
 					<tr>
-						<td class='column2 td'><?php echo $park['name']; ?></td>
-						<td class='column1 td'><?php echo $park['location']; ?></td>
-						<td class='column3 td'><?php echo $park['date_established']; ?></td>
-						<td class='column4 td'><?php echo $park['area_in_acres']; ?></td>
-						<!-- <td class='column5 td'><?php echo $park['description']; ?></td> -->
+						<td class='column2 td'><?= $park['name']; ?></td>
+						<td class='column1 td'><?= $park['location']; ?></td>
+						<td class='column3 td'><?= $park['date_established']; ?></td>
+						<td class='column4 td'><?= $park['area_in_acres']; ?></td>
+						<td class='column5 td'><?= $park['description']; ?></td>
 
-						<?php endforeach; ?>
 					</tr> 
+					<?php endforeach; ?>
 
 				</tbody>
 		</table>
@@ -106,28 +162,27 @@ echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 
 		<h3>If your favorite national park is not listed, add it here.</h3>
 
-
-		<form method="POST"> 
+		<form method="POST" action="/parks.php"> 
 	   		<p>
-	        <label for="name">Name</label>
+	        <label for="name" placeholder="Enter name.">Name</label>
 	        <input id="name" name="name" type="text">
 	    	</p>
 	    	<p>
-	        <label for="location">Location</label>
+	        <label for="location" placeholder="State">Location</label>
 	        <input id="location" name="location" type="text">
 	    	</p>
 	    	<p>
-	        <label for="date_established">Established</label>
-	        <input id="date_established" name="date-established" type="text">
+	        <label for="date_established" placeholder="Format YYYY-MM-DD.">Date established</label>
+	        <input id="date_established" name="date_established" type="text">
 	    	</p>
 	    	<p>
-	        <label for="area_in_acres">Area in Acres</label>
+	        <label for="area_in_acres" placeholder="How big is the park?">Area in Acres</label>
 	        <input id="area_in_acres" name="area_in_acres" type="text">
 	    	</p>
 
 	    	<p>
-	        <label for="description">Description</label>
-	        <input id="description" name="description" type="text">
+	        <label for="description" placeholder="What you know about this park.">Description</label>
+	        <input id="description" name="description" type="textarea">
 	    	</p>
 	    	<p>
 	        <input type="submit">
@@ -135,16 +190,16 @@ echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 		</form>
 
 		<div id="pagination">
-			<?php for ($x = 1; $x <= $totalPages; $x++)   ?>
-				<a href="page=<?php echo $x; ?>&&limitPerPage=<?php echo $limitPerPage ?>"> <?php echo $x; ?> </a>
+			<?php for ($x = 1; $x <= $totalPages; $x++):?>
+				<a href="?page=<?= $x; ?>&limitPerPage=<?= $limitPerPage ?>"><?= $x; ?></a>
 
 			<?php endfor; ?>
 		</div>
 
-		<a id="next" onclick="http://codeup.dev/parks.php?perpage=4&page=2"> Next </a>
+		<!-- <a id="next" onclick="http://codeup.dev/parks.php?perpage=4&page=2"> Next </a> -->
 
-		<a id="previous" href="http://codeup.dev/parks.php?perpage=4&page=2"> Previous </a>
-		<script type="text/javascript"></script>
+		<!-- <a id="previous" href="http://codeup.dev/parks.php?perpage=4&page=2"> Previous </a> -->
+		
 	</body>
 </html>
 
