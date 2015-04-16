@@ -1,6 +1,12 @@
 <?php  
 // EXERCISE 9.
-
+*************************************** CONNECTION CHALLENGES, DID THIS WORK WITHOUT TESTING *********
+// improved userPage variable 
+// added pagination code math pagination, echos the numerical links below
+// added errors array
+// added description column to table in SQL
+// added back description portions of HTML on this file
+******************************************************************************************************
 define('DB_HOST','127.0.0.1');
 define('DB_NAME','parks_db');
 define('DB_USER','parks_user'); 
@@ -17,31 +23,42 @@ $errors = [];
 
 
 
+// ---------------------------------PAGINATION begins here
+// get current page user sees
+if (!empty($_GET['page']))
+{
+	$userPage = $_GET['page'];
+} else {
+	$userPage = 1;
+}
 
-// get current page
-$userPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+// $userPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 // limit number of results per page
-$perPage = isset($_GET['perPage']) ? (int)$_GET['perPage'] : 4;
+$limitPerPage = isset($_GET['limitPerPage']) && $_GET['limitPerPage'] <= 24 ? (int)$_GET['limitPerPage'] : 4;
 
 // determine next set of results based on current page
-$start = ($userPage > 1) ? ($userPage * $perPage) - $perPage : 0;
+$start = ($userPage > 1) ? ($userPage * $limitPerPage) - $limitPerPage : 0;
 $query = "SELECT * FROM parks LIMIT :limit OFFSET :offset";
 
 // prepare statement
 // bindValue added to ensure integer data type for limit and offset
 $stmt = $dbc->prepare($query);
-$stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':limit', $limitPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $start, PDO::PARAM_INT);
 $stmt->execute();
-$parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$parksResultsPerPage = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$total_parks = $dbc->query('SELECT count(*) FROM parks')->fetchColumn();
 
+$totalPages = ceil($total_parks/$limitPerPage);
+
+// ----------------------------------PAGINATION ends here
 
 // Commenting this alive creates undefined variable for description in html
-// $query = 'INSERT INTO parks (location, name, date_established, area_in_acres) 
-// 		VALUES (:location, :name, :date_established, :area_in_acres)';
-// $stmt = $dbc->prepare($query);
-// echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
+$query = 'INSERT INTO parks (location, name, date_established, area_in_acres, description) 
+		VALUES (:location, :name, :date_established, :area_in_acres, :description)';
+$stmt = $dbc->prepare($query);
+echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 
 
 
@@ -108,17 +125,23 @@ $parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	        <input id="area_in_acres" name="area_in_acres" type="text">
 	    	</p>
 
-	    	<!-- <p>
+	    	<p>
 	        <label for="description">Description</label>
 	        <input id="description" name="description" type="text">
-	    	</p> -->
+	    	</p>
 	    	<p>
 	        <input type="submit">
 	    	</p>
 		</form>
-		<!-- <button><a href="http://codeup.dev/parks.php"></a> Page 1 </button> -->
 
-		<a id="next" onclick="'page'++"> Next </a>
+		<div id="pagination">
+			<?php for ($x = 1; $x <= $totalPages; $x++)   ?>
+				<a href="page=<?php echo $x; ?>&&limitPerPage=<?php echo $limitPerPage ?>"> <?php echo $x; ?> </a>
+
+			<?php endfor; ?>
+		</div>
+
+		<a id="next" onclick="http://codeup.dev/parks.php?perpage=4&page=2"> Next </a>
 
 		<a id="previous" href="http://codeup.dev/parks.php?perpage=4&page=2"> Previous </a>
 		<script type="text/javascript"></script>
