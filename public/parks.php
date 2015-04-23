@@ -1,16 +1,6 @@
 <?php  
 // EXERCISE 
-// *************************************** CONNECTION CHALLENGES, DID THIS WORK WITHOUT TESTING *********
-// improved userPage variable 
-// added pagination code math pagination, echos the numerical links below
-// added errors array
-// added description column to table in SQL
-// added back description portions of HTML on this file
-// ******************************************************************************************************
-// added if statement for user post
-
-
-
+// 
 
 require '../parks_login.php';
 require '../parks_migration_db_connect.php';
@@ -19,13 +9,6 @@ require '../ParksInput.php';
 $errors = [];
 $features = [];
 
-// Try/Catch allows us to try a block of code and catch exceptions that may occur while that code is being executed. 
-// This allows our code to continue runing and does not burden user with confusing error messages. 
-// try {
-// 	// check if value is string
-// 	if (!is_string('name'))
-
-// }
 
 
 // No POST? This won't run, no worries.
@@ -35,6 +18,7 @@ if (!empty($_POST)) {
 		$features['name'] = ParksInput::getString('name');
 	} catch (Exception $e) {
 		$errors[] = $e->getMessage();
+		var_dump($errors);
 	}
 
 	try {
@@ -65,7 +49,7 @@ if (!empty($_POST)) {
 
 	$query = 'INSERT INTO parks (name, location, date_established, area_in_acres, description) 
 			VALUES (:name, :location, :date_established, :area_in_acres, :description)';
-var_dump($features);
+	// var_dump($features); for debugging
 	$stmt = $dbc->prepare($query);
 	$stmt->bindValue(':name', $features['name'], PDO::PARAM_STR);
 	$stmt->bindValue(':location', $features['location'], PDO::PARAM_STR);
@@ -114,7 +98,7 @@ $totalPages = ceil($total_parks/$limitPerPage);
 
 // ----------------------------------PAGINATION ends here
 
-var_dump($_POST);
+// var_dump($_POST); for debugging
 
 
 
@@ -167,24 +151,29 @@ var_dump($_POST);
 	        <label for="name" placeholder="Enter name.">Name</label>
 	        <input id="name" name="name" type="text">
 	    	</p>
+	    	<h3 class="exception" id="one"><?php $error ?></h3>
+	    	<!-- DONT ECHO AN ARRAYs -->
 	    	<p>
 	        <label for="location" placeholder="State">Location</label>
 	        <input id="location" name="location" type="text">
 	    	</p>
+	    	<h3 class="exception" id="two"></h3>
 	    	<p>
 	        <label for="date_established" placeholder="Format YYYY-MM-DD.">Date established</label>
 	        <input id="date_established" name="date_established" type="text">
 	    	</p>
+	    	<h3 class="exception" id="three"></h3>
 	    	<p>
 	        <label for="area_in_acres" placeholder="How big is the park?">Area in Acres</label>
 	        <input id="area_in_acres" name="area_in_acres" type="text">
 	    	</p>
-
+	    	<h3 class="exception" id="four"></h3>
 	    	<p>
 	        <label for="description" placeholder="What you know about this park.">Description</label>
 	        <input id="description" name="description" type="textarea">
 	    	</p>
 	    	<p>
+	    	<h3 class="exception" id="five"></h3>
 	        <input type="submit">
 	    	</p>
 		</form>
@@ -196,9 +185,7 @@ var_dump($_POST);
 			<?php endfor; ?>
 		</div>
 
-		<!-- <a id="next" onclick="http://codeup.dev/parks.php?perpage=4&page=2"> Next </a> -->
-
-		<!-- <a id="previous" href="http://codeup.dev/parks.php?perpage=4&page=2"> Previous </a> -->
+		
 		
 	</body>
 </html>

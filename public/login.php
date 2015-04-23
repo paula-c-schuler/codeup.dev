@@ -6,10 +6,9 @@
 //  Start the session or resume existing, helps $_SESSION get value
 session_start();
 
-// Use Auth.php to develop authenticiation system. 
+// Use Auth.php class to develop authenticiation system. 
 require_once '../Auth.php';
-
-// Use "require" to make more modular flexible code
+require_once '../Input.php';
 require 'functions.php';
 
 // NTS: Remember to use strings in the isset function. The variable is a string.

@@ -1,12 +1,15 @@
 <?
+// EXERCISE 7.1.1 PHP with HTML - function complete
 
 function pageController()
 {
 	$data = [];
-	$data['nouns'] = ["Cello", "Bass", "Guitar", "Troubador", "Singer", "Stage", "Conductor", "Drummer", "Microphone", "Fans"];
+	$data['nouns'] = ["Cello", "Bass", "Guitar", "Troubador", "Singer", "Stage", 
+	"Conductor", "Drummer", "Microphone", "Fans"];
 	$data["nounsRandom"] = array_rand($data['nouns']); 
 	echo $data['nounsRandom'];
-	$data['adjectives'] = ["Boiling", "Salty", "Sweet", "Hot", "Flat", "Comfort", "Lumpy", "Melty", "Chewy", "Sticky"];
+	$data['adjectives'] = ["Boiling", "Salty", "Sweet", "Hot", "Flat", "Comfort", 
+	"Lumpy", "Melty", "Chewy", "Sticky"];
 	$data["adjectivesRandom"] = array_rand($data['adjectives']);
 	return $data;
 }
@@ -15,7 +18,8 @@ extract(pageController());
 <!DOCTYPE html>
 <html>
 <head>
-	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' 
+	type='text/css'>
 	<style type="text/css">
 		body {
 			background-color: #603E11;
@@ -25,7 +29,7 @@ extract(pageController());
 		}
 		div {
 			background-color: #ECE8DB;
-			margin-top: 200px;
+			margin-top: 100px;
 			margin-right: 200px;
 			margin-left: 200px;
 			padding: 50px;
@@ -36,7 +40,9 @@ extract(pageController());
 </head>
 <body>
 	<div>
-		<h1>Your Random Server Name Is:   <?= $adjectives[$adjectivesRandom] . " " . $nouns[$nounsRandom] . PHP_EOL;?></h1>
+		<h1>Your Random Server Name Is:   
+			<?= $adjectives[$adjectivesRandom] . 
+			" " . $nouns[$nounsRandom] . PHP_EOL;?></h1>
 	</div>
 </body>
 </html>

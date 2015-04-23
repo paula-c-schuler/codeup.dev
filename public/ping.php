@@ -1,12 +1,15 @@
 <?php
+// EXERCISE 7.1.3 PING PONG functional, not pretty
+// EXERCISE 7.3 STATIC inside CLASSES - COMPLETE ***
+
+require_once 'input.php';
 
 function pageController() {
     // Initialize an empty data array.
     $data = [];
 
     require 'functions.php'; 
-    // Add data to be used in the html view.
-    // Checks value, if ball has ever been swung at.
+    // Add data to be used in the html view. Checks value, if ball swung at.
     if (!isset($_GET['ball'])) {
         $counter = '0';
         $message = "Hit the ball, if you can!";

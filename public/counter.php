@@ -23,7 +23,7 @@ function pageController()
     return $data;    
 }
 
-// Call the pageController function and extract all the returned array as local variables.
+// Call the pageController function and extract array as local variables.
 extract(pageController());
 
 

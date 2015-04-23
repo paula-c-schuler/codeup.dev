@@ -1,6 +1,10 @@
 <?php
-// <!-- *** EXERCISE 7.1.4 COMPLETED SUCCESSFULLY -->
+// EXERCISE 7.1.4 COMPLETED SUCCESSFULLY 
+// EXERCISE 7.3.3 ADDED REQUIRE OF INPUT CLASS 
+
 require_once "../Auth.php";
+require_once "../Input.php";
+
 //  Start the session or resume existing, helps $_SESSION get value
 session_start();
 var_dump($_SESSION);

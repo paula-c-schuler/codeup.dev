@@ -1,4 +1,7 @@
-<!-- EXERCSE COMPLETE -->
+<!-- EXERCISE 1.3.1 COMPLETE -->
+<!-- EXERCISE 1.3.2  -->
+<!-- EXERCISE 1.3.3  -->
+<!-- EXERCISE 1.3.4 -->
 <?php
   var_dump($_GET);
   var_dump($_POST);

@@ -1,6 +1,6 @@
 <?php
-// *** EXERCISE 7.2 COMPLETE - ADDED REQUIRE AND FUNCTIONS FROM FUNCTIONS.PHP FILE ***
-// *** EXERCISE 7.3 STATIC inside CLASSES - COMPLETE ***
+// EXERCISE 7.2 COMPLETE - ADDED REQUIRE AND FUNCTIONS FROM FUNCTIONS.PHP FILE
+// EXERCISE 7.3.2 STATIC inside CLASSES, usng Input::has and Input::get
 
 require_once '../Input.php';
 
@@ -13,18 +13,24 @@ function pageController() {
 
     // Add data to be used in the html view.
     // Checks value, if ball has ever been swung at.
+
     if (Input::has('ball')) {
         $counter = '0';
         $message = "Hit the ball, if you can!";
+
     // Records the hit, sends a message, updates score.
+
     } elseif (Input::get('ball') == 'hit') {
         $counter = $_GET['counter'];
         $message = "Hit!";
+
     // Records the miss, sends a message, zeroes the score.
+
     } else {
         $message = 'Bummer, Game Over';
         $counter = '0';
     }
+
     // Sets up the array
     $data['counter'] = $counter;
     $data['message'] = $message;

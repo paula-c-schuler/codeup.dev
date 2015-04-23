@@ -1,5 +1,6 @@
 <?php
-// *** EXERCISE 7.3.3 COMPLETED -- STATIC inside CLASSES ***
+// EXERCISE 7.3.3 COMPLETED -- STATIC inside CLASSES
+
 class Input
 {
     /**

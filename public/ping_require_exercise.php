@@ -1,14 +1,13 @@
 <?php
-// *** EXERCISE 7.2 COMPLETE - ADDED REQUIRE AND FUNCTIONS FROM FUNCTIONS.PHP FILE ***
-// *** EXERCISE 7.3 STATIC inside CLASSES - COMPLETE ***
+// EXERCISE 7.2 COMPLETE - ADDED REQUIRE AND FUNCTIONS FROM FUNCTIONS.PHP FILE
+// EXERCISE 7.3.2 STATIC inside CLASSES, usng Input::has and Input::get
 
 require_once '../Input.php';
 
 function pageController() {
-    // Initialize an empty data array.
+    // Step One in controller, initialize empty array
     $data = [];
 
-//  use "require" to make more modular flexible code
     require 'functions.php'; 
 
     // Add data to be used in the html view.

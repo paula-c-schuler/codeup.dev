@@ -1,20 +1,19 @@
-
-
 <? 
+// EXERCISE 7.1.1 - PHP with HTML - done and functional.
+// EXERCISE 7.1.2
+
+
 function pageController()
 {
-    // Initialize an empty data array.
     $arrayFaves = [];
     
+    $arrayFaves['favorites'] = ["Polcinego", "Plane Tickets", 
+    "Photos", "Writing", "Cathedral Acoustics"];
 
-    // Add data to be used in the html view.
-    $arrayFaves['favorites'] = ["Polcinego", "Plane Tickets", "Photos", "Writing", "Cathedral Acoustics"];
-
-    // Return the completed data array.
     return $arrayFaves;    
 }
 
-// Call the pageController function and extract all the returned array as local variables.
+// Call the pageController function, extract array as local variables.
 extract(pageController());
 
 ?>
@@ -22,8 +21,10 @@ extract(pageController());
 <!DOCTYPE html> 
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script 
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<style type="text/css">
 	body {
 		background-color: #AF92BA;
